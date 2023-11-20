@@ -1,5 +1,5 @@
-import { Creator } from "./Creator";
-import { Stats } from "./Stats";
+import { Creator } from "../Creator";
+import { Stats } from "../Stats";
 
 export abstract class Enemy{
     protected _name: string;
