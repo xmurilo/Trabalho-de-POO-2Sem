@@ -1,5 +1,5 @@
 import { Stats } from "./Stats";
-import { Skills } from "./Skills";
+import { Skills, BerserkImpact, DesintegratorBolt, DeathVision, IlusionDart } from "./Skills";
 
 const prompt = require("prompt-sync")();
 const write = prompt;
@@ -17,6 +17,7 @@ export class Creator {
 
   constructor() {
     this.stats = new Stats();
+    this.skills = new Skills();
   }
 
   // ---- Metodo para criar o Personagem
@@ -223,7 +224,7 @@ export class Creator {
       this.stats.max_health += 11;
       this.stats.health += 11;
       this.stats.armor += 5;
-      this.skills = "Impacto Berserker";
+      this.skills = new BerserkImpact;
     }
 
     // MAGO
@@ -231,7 +232,7 @@ export class Creator {
       this.stats.intelligence += 20;
       this.stats.max_mana += 15;
       this.stats.mana += 15;
-      this.skills = "Raio Desintegrador";
+      this.skills = new DesintegratorBolt;
     }
 
     // ARQUEIRO
@@ -240,7 +241,7 @@ export class Creator {
       this.stats.max_stamina += 10;
       this.stats.stamina += 10;
       this.stats.strength += 7;
-      this.skills = "Flecha Ilusória";
+      this.skills = new IlusionDart;
     }
 
     // ASSASSINO
@@ -249,7 +250,7 @@ export class Creator {
       this.stats.max_stamina += 13;
       this.stats.stamina += 13;
       this.stats.strength += 5;
-      this.skills = "Visão da Morte";
+      this.skills = new DeathVision;
     } else {
       console.log("Classe inexistente, favor digitar corretamente!");
     }
