@@ -252,18 +252,16 @@ export class Creator {
       console.log("Classe inexistente, favor digitar corretamente!");
     }
 
-    console.warn(`✷ 　 　　 　 ·         　 ⋆ · 　 *         ✷ 　 　　 　 ·
-                　 ˚ * .          * ⋆ 　 .                      * ⋆ 　 .               　 ˚ * .  
-        　 　　 *　　 * ⋆ 　 .      Bem vindo ao mundo de Eldorium        　 　　 *　　 * ⋆ 　 . 
-        · 　　 ⋆ 　　　 ˚ ˚ 　　 ✦                     　 ⋆ · 　 *         · 　　 ⋆ 　　　 ˚ ˚ 　　 ✦
-        　 ⋆ · 　 *      * ⋆ 　 .       * ⋆ 　 .             * ⋆ 　 .              　 ⋆ · 　 *
-        　 *       ✷ 　Voce se encontra em uma carruagem e esta sendo levado　 · ✵              　　　　 ⋆ ✧　 　 · 　 ✧　✵
-        　　　　 ⋆ ✧　 　 · para a cidade de Everglen para se encontrar com o Rei　 　 　　 *　　 * ⋆ 　 . ✧　 　 · 　 ✧　✵
-        　　 *　　 * ⋆ 　 . 　Arthen para ser recrutado pela guarda Real, mas　um · ✵      　　　　 ⋆ ✧　 　 · 　 ✧　✵
-        　　　　 ⋆ ✧　 　 · 　grupo de Goblins ataca a carruagem para matá-los e　 · ✵           　 ⋆ · 　 * · 　 ✧　✵
-        ✧　 　 · 　 ✧　✵   　em meio à confusão você consegue escapar...　 ·            　 ⋆ · 　 *      
-        　　　　 ⋆ ✧　 　 · 　　 · ✵              　　　　 ⋆ ✧　 　 · 　 ✧　✧　 　 · 　 ✧　✵           　 ⋆ · 　 *
-        　　　　 ⋆ ✧　 　 · 　Agora voce esta na/o ${this.region} `);
+    console.warn(`Bem vindo ao mundo de Eldorium\n
+    Voce se encontra em uma carruagem e esta sendo levado\n 
+    para a cidade de Everglen para se encontrar com o Rei Arthen\n
+    para ser recrutado pela guarda Real, mas um grupo de Goblins\n
+    ataca a carruagem para matá-los e em meio à confusão você consegue escapar\n
+    e se esconder em uma caverna, mas você não sabe onde esta.\n
+    \n
+    Agora voce esta na/o ${this.region} `);
+   
+    
 
     console.log("");
     console.log("»»———————Mini Dica———————««");
