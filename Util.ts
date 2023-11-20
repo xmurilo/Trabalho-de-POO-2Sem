@@ -1,6 +1,7 @@
 import { Creator } from "./Creator";
 import { Stats } from "./Stats";   
 import { Enemy, Gladimir, Edecio, Bruna, Angelo, Fishman, lilAngel, Demon, Bandit, Vampire, Goblin, Troll, Fairy  } from "./Enemy";
+import { Skills } from "./Skills";
 
 const prompt = require("prompt-sync")();
 const write = prompt;
