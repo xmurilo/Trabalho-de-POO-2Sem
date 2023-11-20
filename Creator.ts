@@ -1,17 +1,19 @@
 import { Stats } from "./Stats";
+import { Skills } from "./Skills";
 
 const prompt = require("prompt-sync")();
 const write = prompt;
 
 export class Creator {
   public stats: Stats;
+  public skills: Skills;
 
   nick: string = "";
   region: string = "";
   race: string = "";
   class: string = "";
   gold: number = 0;
-  skills: string = "";
+
 
   constructor() {
     this.stats = new Stats();
