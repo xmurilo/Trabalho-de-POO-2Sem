@@ -276,4 +276,49 @@ export class Creator {
     
 
   }
+
+  levelUp(creator: Creator){
+    if (creator.stats.xp >= creator.stats.max_xp) {
+        
+        creator.stats.nivel += 1
+        creator.stats.max_xp += 100
+        creator.stats.xp = 0
+        console.log(`LEVEL UP!!! Você subiu para o nível ${creator.stats.nivel}!`);
+        console.log(`Você agora tem 10 Pontos para distribuir em seus atributos, escolha sabiamente!`);
+
+        let points = 10
+        while(points != 0){
+          console.log("");
+          console.log("1 - Força");
+          console.log("2 - Destreza");
+          console.log("3 - Inteligência");
+          console.log("");
+          
+          let qnt = write("Digite a quantidade que você quer aumentar: ");
+          
+          let atribute = write("Digite o atributo que você quer aumentar: ");
+          
+          console.log("");
+          
+          
+          if (atribute == "1" || atribute == "força" || atribute == "forca") {
+            creator.stats.strength += Number(qnt);
+            points -= Number(qnt);
+            console.log(`Você aumentou ${qnt} pontos em Força!`);
+           }
+           
+           else if (atribute == "2" || atribute == "destreza") {
+            creator.stats.dexterity += Number(qnt);
+            points -= Number(qnt);
+            console.log(`Você aumentou ${qnt} pontos em Destreza!`);
+           }
+           
+           else if (atribute == "3" || atribute == "inteligência" || atribute == "inteligencia") {
+            creator.stats.intelligence += Number(qnt);
+            points -= Number(qnt);
+            console.log(`Você aumentou ${qnt} pontos em Inteligência!`);
+            }
+          }
+        }
+    }
 }
