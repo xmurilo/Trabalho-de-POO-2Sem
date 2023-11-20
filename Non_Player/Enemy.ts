@@ -1,5 +1,6 @@
 import { Creator } from "../Creator";
 import { Stats } from "../Stats";
+import { Util } from "../Util";
 
 export abstract class Enemy{
     protected _name: string;
@@ -11,7 +12,8 @@ export abstract class Enemy{
         enemyMaxHealth: number,
         enemyStrength: number,
         enemyArmor: number,
-        enemyStamina: number
+        enemyStamina: number,
+        enemyDexterity: number
     ){
         this._stats = new Stats()
         this._name = enemyName
@@ -58,49 +60,60 @@ export abstract class Enemy{
 
 export class Gladimir extends Enemy{
     constructor(){
-        super("Gladimir", 70, 70, 10, 6, 1)
+        super("Gladimir", 70, 70, 10, 6, 1, 40)
     }
 
     public atack(creator: Creator){
-        let damage = 30 + this.stats.strength - creator.stats.armor
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 30 + this.stats.strength - creator.stats.armor
+            creator.stats.health -= damage
+        }
     }
 }
 
 export class Edecio extends Enemy{
     constructor(){
-        super("Edécio", 80, 80, 10, 7, 3)
+        super("Edécio", 80, 80, 10, 7, 3, 50)
     }
 
     public atack(creator: Creator){
-        let damage = 17 + this.stats.strength
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 17 + this.stats.strength 
+            creator.stats.health -= damage
+        }
     }
 }
 
 export class Bruna extends Enemy{
     constructor(){
-        super("Bruna", 100, 100, 15, 8, 2)
+        super("Bruna", 100, 100, 15, 8, 2, 50)
     }
 
     public atack(creator: Creator){
-        let damage = 20 + this.stats.strength
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 20 + this.stats.strength 
+            creator.stats.health -= damage
+        }
     }
 }
 
 export class Angelo extends Enemy{
     constructor(){
-        super("Angelo", 150, 150, 20, 30, 2)
+        super("Angelo", 150, 150, 20, 30, 2, 50)
     }
 
     public atack(creator: Creator){
         console.log("Você realmente chegou até aqui?! HAHAHAHAHAHAHA QUERO VER VOCÊ SOBREVIVER A ISSO!!!!");
-        
-        let damage = 27 + this.stats.strength
-        creator.stats.health -= damage
-        creator.stats.armor -= 2
-        creator.stats.mana -= 2
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 30 + this.stats.strength 
+            creator.stats.health -= damage
+            creator.stats.armor -= 2
+            creator.stats.mana -= 2
+        }
     }
 }
 
@@ -108,34 +121,43 @@ export class Angelo extends Enemy{
 
 export class Fishman extends Enemy{
     constructor(){
-        super("Homem P eixe", 30, 30, 10, 5,0)
+        super("Homem P eixe", 30, 30, 10, 5,0, 20)
     }
 
     public atack(creator: Creator){
-        let damage = 20 + this.stats.strength - creator.stats.armor
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 18 + this.stats.strength - creator.stats.armor
+            creator.stats.health -= damage
+        }
     }
 }
 
 export class lilAngel extends Enemy{
     constructor(){
-        super("Anjinho ", 20, 20, 8, 2, 0)
+        super("Anjinho ", 20, 20, 8, 2, 0, 20)
     }
 
     public atack(creator: Creator){
-        let damage = 16 + this.stats.strength - creator.stats.armor
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 16 + this.stats.strength - creator.stats.armor
+            creator.stats.health -= damage
+        }
     }
 }
 
 export class Demon extends Enemy{
     constructor(){
-        super("Demônio", 32, 32, 10, 7, 0)
+        super("Demônio", 32, 32, 10, 7, 0, 20)
     }
 
     public atack(creator: Creator){
-        let damage = 21 + this.stats.strength - creator.stats.armor
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 21 + this.stats.strength - creator.stats.armor
+            creator.stats.health -= damage
+        }
     }
 }
 
@@ -143,34 +165,43 @@ export class Demon extends Enemy{
 
 export class Orc extends Enemy{
     constructor(){
-        super("Orc", 25, 25, 10, 5, 0)
+        super("Orc", 25, 25, 10, 5, 0, 20)
     }
 
     public atack(creator: Creator){
-        let damage = 18 + this.stats.strength - creator.stats.armor
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 18 + this.stats.strength - creator.stats.armor
+            creator.stats.health -= damage
+        }
     }
 }
 
 export class Bandit extends Enemy{
     constructor(){
-        super("Ladrão", 23, 23, 11, 3, 0)
+        super("Ladrão", 23, 23, 11, 3, 0, 20)
     }
 
     public atack(creator: Creator){
-        let damage = 18 + this.stats.strength - creator.stats.armor
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 18 + this.stats.strength - creator.stats.armor
+            creator.stats.health -= damage
+        }
     }
 }
 
 export class Vampire extends Enemy{
     constructor(){
-        super("Vampiro", 27, 27, 11, 2, 0)
+        super("Vampiro", 27, 27, 11, 2, 0, 20)
     }
 
     public atack(creator: Creator){
-        let damage = 19 + this.stats.strength - creator.stats.armor
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 19 + this.stats.strength - creator.stats.armor
+            creator.stats.health -= damage
+        }
     }
 }
 
@@ -179,33 +210,42 @@ export class Vampire extends Enemy{
 
 export class Goblin extends Enemy{
     constructor(){
-        super("Goblin", 21, 21, 7, 3, 0)
+        super("Goblin", 21, 21, 7, 3, 0, 20)
     }
 
     public atack(creator: Creator){
-        let damage = 15 + this.stats.strength - creator.stats.armor
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 15 + this.stats.strength - creator.stats.armor
+            creator.stats.health -= damage
+        }
     }
 }
 
 export class Troll extends Enemy{
     constructor(){
-        super("Troll", 30, 30, 11, 5, 0)
+        super("Troll", 30, 30, 11, 5, 0, 20)
     }
 
     public atack(creator: Creator){
-        let damage = 18 + this.stats.strength - creator.stats.armor
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if(hit){
+            let damage = 18 + this.stats.strength - creator.stats.armor
+            creator.stats.health -= damage
+        }
     }
 }
 
 export class Fairy extends Enemy{
     constructor(){
-        super("Fada", 18, 18, 5, 2, 0)
+        super("Fada", 18, 18, 5, 2, 0, 20)
     }
 
     public atack(creator: Creator){
-        let damage = 17 + this.stats.strength - creator.stats.armor
-        creator.stats.health -= damage
+        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        if(hit){
+            let damage = 17 + this.stats.strength - creator.stats.armor
+            creator.stats.health -= damage
+        }
     }
 }

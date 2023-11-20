@@ -29,4 +29,12 @@ export class Util{
         }
         return creator.stats.health;
     }
+
+    public static random(min: number, max: number){
+        const value = min + Math.random() * (max - min);
+        const rounded = Math.round(value);
+        return rounded;
+    }
+
 }
+
