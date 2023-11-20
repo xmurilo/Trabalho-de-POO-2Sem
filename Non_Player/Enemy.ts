@@ -64,7 +64,7 @@ export class Gladimir extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 30 + this.stats.strength - creator.stats.armor
             creator.stats.health -= damage
@@ -78,7 +78,7 @@ export class Edecio extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 17 + this.stats.strength 
             creator.stats.health -= damage
@@ -92,7 +92,7 @@ export class Bruna extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 20 + this.stats.strength 
             creator.stats.health -= damage
@@ -107,7 +107,7 @@ export class Angelo extends Enemy{
 
     public atack(creator: Creator){
         console.log("Você realmente chegou até aqui?! HAHAHAHAHAHAHA QUERO VER VOCÊ SOBREVIVER A ISSO!!!!");
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 30 + this.stats.strength 
             creator.stats.health -= damage
@@ -125,7 +125,7 @@ export class Fishman extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 18 + this.stats.strength - creator.stats.armor
             creator.stats.health -= damage
@@ -139,7 +139,7 @@ export class lilAngel extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 16 + this.stats.strength - creator.stats.armor
             creator.stats.health -= damage
@@ -153,7 +153,7 @@ export class Demon extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 21 + this.stats.strength - creator.stats.armor
             creator.stats.health -= damage
@@ -169,7 +169,7 @@ export class Orc extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 18 + this.stats.strength - creator.stats.armor
             creator.stats.health -= damage
@@ -183,7 +183,7 @@ export class Bandit extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 18 + this.stats.strength - creator.stats.armor
             creator.stats.health -= damage
@@ -197,7 +197,7 @@ export class Vampire extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 19 + this.stats.strength - creator.stats.armor
             creator.stats.health -= damage
@@ -214,7 +214,7 @@ export class Goblin extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 15 + this.stats.strength - creator.stats.armor
             creator.stats.health -= damage
@@ -228,7 +228,7 @@ export class Troll extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if(hit){
             let damage = 18 + this.stats.strength - creator.stats.armor
             creator.stats.health -= damage
@@ -242,7 +242,7 @@ export class Fairy extends Enemy{
     }
 
     public atack(creator: Creator){
-        const hit = Util.random(1, 100) >= creator.stats.dexterity
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if(hit){
             let damage = 17 + this.stats.strength - creator.stats.armor
             creator.stats.health -= damage
