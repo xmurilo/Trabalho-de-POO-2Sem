@@ -7,8 +7,8 @@ import { Enemy } from "./Non_Player/Enemy";
 import { Inventory } from "./Inventory/Inventory";
 
 const creator: Creator = new Creator();
-const util: Util = new Util();
-const blacksmith: Blacksmith = new Blacksmith();
+const util: Util = new Util(creator);
+const blacksmith: Blacksmith = new Blacksmith(creator);
 const inventory: Inventory = new Inventory();
 creator.characterCreator();
 main();
@@ -47,7 +47,9 @@ export function main() {
         util.rest(creator);
         break;
       case 3:
-        creator.travel();
+        // creator.travel();
+        console.log('Building...');
+        
         break;
       case 4:
         inventory.showInventory();

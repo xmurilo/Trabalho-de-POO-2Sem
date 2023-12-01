@@ -3,7 +3,7 @@ const write = prompt;
 import { Creator } from "../Creator";
 import { Item } from "../Inventory/Item";
 import { Weapon } from "../Weapons";
-import { City } from "./City";
+import { City } from "./city";
 
 export class Blacksmith extends City {
   public services(creator: Creator): void {

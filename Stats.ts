@@ -1,6 +1,6 @@
 export class Stats{
     constructor(
-        private _nivel: number = 0,
+        private _level: number = 0,
         private _hp: number = 0,
         private _max_hp: number = 0,
         private _stamina: number = 0,
@@ -14,11 +14,11 @@ export class Stats{
         private _xp: number = 0,
         private _max_xp: number = 0
 
-    ){ }
+    ){}
 
     // --------- Getters ----------
-    public get nivel(): number{
-        return this._nivel
+    public get level(): number{
+        return this._level
     }
 
     public get health(): number{
@@ -71,8 +71,8 @@ export class Stats{
 
     // --------- Setters ----------
 
-    public set nivel(nivel: number){
-        this._nivel = nivel
+    public set level(level: number){
+        this._level = level
     }
 
     public set health(health: number){

@@ -44,10 +44,12 @@ export class Util {
   public stats: Stats;
   public inventory: Inventory;
   public combat: Combat;
-  constructor() {
+  public creator: Creator;
+  constructor(creator: Creator) {
     this.stats = new Stats();
+    this.creator = new Creator();
     this.inventory = new Inventory();
-    this.combat = new Combat();
+    this.combat = new Combat(creator);
   }
 
   checkMaxHealth(creator: Creator): number {
@@ -80,8 +82,6 @@ export class Util {
     return console.log(creator.stats);
   }
 
-
-
   rest(creator: Creator) {
     if (creator.stats.health < creator.stats.max_health - creator.stats.max_health * 0.2) {
       creator.stats.health += creator.stats.max_health - creator.stats.max_health * 0.2;
@@ -110,6 +110,7 @@ export class Util {
     );
     console.log("");
   }
+  travel(creator: Creator) {}
 
   explore(creator: Creator) {
     let randomEnemy = Util.random(0, mobs.length - 1);

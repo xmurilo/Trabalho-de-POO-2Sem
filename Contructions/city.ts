@@ -9,9 +9,9 @@ export abstract class City {
   public creator: Creator;
   public util: Util;
 
-  constructor() {
+  constructor(creator:Creator) {
     this.creator = new Creator();
-    this.util = new Util();
+    this.util = new Util(creator);
   }
 
   public abstract services(creator: Creator): void;
