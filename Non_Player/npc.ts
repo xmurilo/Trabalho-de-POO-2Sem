@@ -1,5 +1,5 @@
-import { Quest } from '../Quests/quests';
-import { RewardType } from '../Quests/quests';
+import { Quest } from "../Quests/Quest";
+import { RewardType } from "../Quests/Quest";
 export class NPC {
   constructor(private _name: string, private _quests: Quest[] = []) {}
 
@@ -20,9 +20,5 @@ export class NPC {
   }
 }
 
-const quest = new Quest('Derrotar o dragão',
- { type: RewardType.MONEY, value: 10000 });
-const npc = new NPC('Azarov', [quest]);
-
-console.log(npc.quests);
-
+const dragonQuestAzarov = new Quest("Derrotar o dragão", { type: RewardType.MONEY, value: 10000 });
+const azarovNpc = new NPC("Azarov", [dragonQuestAzarov]);
