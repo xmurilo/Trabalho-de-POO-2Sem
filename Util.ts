@@ -58,4 +58,19 @@ export class Util {
     const rounded = Math.round(value);
     return rounded;
   }
+  showStats(creator: Creator): void {
+    return console.log(creator.stats);
+  }
+
+  giveUp() {
+    const phases = [
+      "Lembre-se que você é um guerreiro e não um covarde!",
+      "Você não pode desistir agora!",
+      "Se precisa de ajuda, procure um amigo!",
+      "Lembre-se, até os heróis tiram um cochilo antes de voltar à batalha!",
+    ];
+    console.log("Você se suicidou!");
+    console.log(phases[Math.floor(Math.random() * phases.length)]);
+    process.exit();
+  }
 }
