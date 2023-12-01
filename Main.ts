@@ -44,7 +44,7 @@ export function main() {
         util.showStats(creator);
         break;
       case 2:
-        creator.rest();
+        util.rest(creator);
         break;
       case 3:
         creator.travel();
@@ -53,7 +53,7 @@ export function main() {
         inventory.showInventory();
         break;
       case 5:
-        util.explore();
+        util.explore(creator);
         break;
       case 6:
         city();
