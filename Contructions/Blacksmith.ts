@@ -1,7 +1,7 @@
 const prompt = require("prompt-sync")();
 const write = prompt;
 import { Creator } from "../Creator";
-import { Item } from "../Util";
+import { Item } from "../Inventory/Item";
 import { Weapon } from "../Weapons";
 import { City } from "./City";
 

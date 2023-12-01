@@ -5,6 +5,8 @@ import { Creator } from "./Creator";
 import { Util } from "./Util";
 import { Weapon } from "./Weapons";
 import { BerserkImpact, DesintegratorBolt, IlusionDart, DeathVision } from "./Skills";
+import { Item } from  "./Inventory/Item";
+import { Inventory } from "./Inventory/Inventory";
 
 const prompt = require('prompt-sync')();
 const write = prompt;
@@ -17,6 +19,7 @@ export class Combat{
     public desintegratorBolt: DesintegratorBolt;
     public ilusionDart: IlusionDart;
     public deathVision: DeathVision;
+    public inventory: Inventory;
     constructor(){
         this.creator = new Creator();
         this.skill = new Skills(); 
@@ -24,6 +27,7 @@ export class Combat{
         this.desintegratorBolt = new DesintegratorBolt();
         this.ilusionDart = new IlusionDart();
         this.deathVision = new DeathVision();
+        this.inventory = new Inventory();
     }
 
     public atack(creator: Creator, enemy: Enemy): void{
@@ -96,7 +100,76 @@ export class Combat{
         }
     }
 
-    public trueFight(creator: Creator, enemy: Enemy): void{
+    public mobFight(creator: Creator, enemy: Enemy): void{
+        console.log("");
+        console.log(`Você encontrou um ${enemy.name}!`);
+        console.log("");
+        console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳`);
+        console.log(`⎳ ⎲  `);
+        console.log(`⎳ ⎲           ${enemy.name}  `);
+        console.log(`⎳ ⎲       Vida: ${enemy.stats.health}  `);
+        console.log(`⎳ ⎲       Força: ${enemy.stats.strength}  `);
+        console.log(`⎳ ⎲       Armadura: ${enemy.stats.armor}  `);
+        console.log(`⎳ ⎲  `);
+        console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳`);
+        
+
+        while(enemy.stats.health > 0 || creator.stats.health > 0){
+            console.log("");
+            console.log("O que você deseja fazer?");
+            console.log("");
+            console.log("1 - Atacar");
+            console.log("2 - Usar Skill");
+            console.log("3 - Fugir");
+            console.log("4 - Abrir a mochila");
+            
+            let choice = write("Escolha uma das opções: ");
+
+            if(choice == "1"){
+                this.atack(creator, enemy);
+                this.death(creator, enemy);
+            }
+            if (choice == "2") {
+                this.useSkill(creator, enemy);
+                this.death(creator, enemy);
+            }
+            if (choice == "3") {
+                console.log("");
+                console.log("Você fugiu da batalha, CAGÃO!");
+                console.log("");
+                break;
+            }
+            if (choice == "4") {
+                this.inventory.showInventory();
+                this.deathBoss(creator, enemy);
+            }
+            console.log("⫍ ——————————————————————————————————————————————————— ⥚ ⦾ ⥛ ——————————————————————————————————————————————————— ⫎");
+                console.log("");
+                console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
+                console.log(`⎳ ⎲  `);
+                console.log(`⎳ ⎲        ${creator.nick}                             |                         Monstro:  ${enemy.name}  `);
+                console.log(`⎳ ⎲       Vida: ${creator.stats.health}/${creator.stats.max_health}                          |                         Vida: ${enemy.stats.health}  `);
+                console.log(`⎳ ⎲          Força: ${creator.stats.strength}                       |                         Força: ${enemy.stats.strength}  `);
+                console.log(`⎳ ⎲          Armadura: ${creator.stats.armor}                     |                         Armadura: ${enemy.stats.armor}  `);
+                console.log(`⎳ ⎲       Stamina: ${creator.stats.stamina}/${creator.stats.max_stamina}     `);
+                console.log(`⎳ ⎲       Mana: ${creator.stats.mana}/${creator.stats.max_mana}               `);
+                console.log(`⎳ ⎲       Dextreza: ${creator.stats.dexterity}          `);
+                console.log(`⎳ ⎲       Inteligência: ${creator.stats.intelligence}     `);
+                console.log(`⎳ ⎲       Nivel: ${creator.stats.nivel}        `);
+                console.log(`⎳ ⎲       Gold: ${creator.gold}`);
+                console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
+                console.log("");
+                console.log("⫍ ——————————————————————————————————————————————————— ⥞ ⦾ ⥟ ——————————————————————————————————————————————————— ⫎");
+                console.log("");
+
+                if (enemy.stats.health <= 0) {
+                    console.log(`${enemy.name} morreu ⤜(*.*)⤏ . Parabens pelo seu feito!! `);
+                    break;
+                }
+        }
+    }
+
+    public bossFight(creator: Creator, enemy: Enemy): void{
         console.log("");
         console.log(`Você encontrou um ${enemy.name}!`);
         console.log("");
@@ -123,44 +196,47 @@ export class Combat{
 
             if(choice == "1"){
                 this.atack(creator, enemy);
-                this.death(creator, enemy);
                 this.deathBoss(creator, enemy);
             }
             if (choice == "2") {
                 this.useSkill(creator, enemy);
-                this.death(creator, enemy);
+                this.deathBoss(creator, enemy);
             }
             if (choice == "3") {
                 console.log("");
                 console.log("Você fugiu da batalha!");
                 console.log("");
+                console.log(`- ${enemy.name} : "Você é um fracote mesmo, HAHHAHAHAHAH, EU VOU TE PEGAR!!!!`);
+                
                 break;
             }
             if (choice == "4") {
-                console.log("⫍ ——————————————————————————————————————————————————— ⥚ ⦾ ⥛ ——————————————————————————————————————————————————— ⫎");
-                console.log("");
-                console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
-                console.log(`⎳ ⎲  `);
-                console.log(`⎳ ⎲        ${creator.nick}                             |                         Monstro:  ${enemy.name}  `);
-                console.log(`⎳ ⎲       Vida: ${creator.stats.health}/${creator.stats.max_health}                          |                         Vida: ${enemy.stats.health}  `);
-                console.log(`⎳ ⎲          Força: ${creator.stats.strength}                       |                         Força: ${enemy.stats.strength}  `);
-                console.log(`⎳ ⎲          Armadura: ${creator.stats.armor}                     |                         Armadura: ${enemy.stats.armor}  `);
-                console.log(`⎳ ⎲       Stamina: ${creator.stats.stamina}/${creator.stats.max_stamina}     `);
-                console.log(`⎳ ⎲       Mana: ${creator.stats.mana}/${creator.stats.max_mana}               `);
-                console.log(`⎳ ⎲       Dextreza: ${creator.stats.dexterity}          `);
-                console.log(`⎳ ⎲       Inteligência: ${creator.stats.intelligence}     `);
-                console.log(`⎳ ⎲       Nivel: ${creator.stats.nivel}        `);
-                console.log(`⎳ ⎲       Gold: ${creator.gold}`);
-                console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
-                console.log("");
-                console.log("⫍ ——————————————————————————————————————————————————— ⥞ ⦾ ⥟ ——————————————————————————————————————————————————— ⫎");
-                console.log("");
-                
-                if (back.inventory.items.length == 0) {
-                    console.log("Sua mochila está vazia!");
-                    console.log("");
-                }
- 
+                this.inventory.showInventory();
+                this.deathBoss(creator, enemy);
+            }
+
+            console.log("⫍ ——————————————————————————————————————————————————— ⥚ ⦾ ⥛ ——————————————————————————————————————————————————— ⫎");
+            console.log("");
+            console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
+            console.log(`⎳ ⎲  `);
+            console.log(`⎳ ⎲        ${creator.nick}                             |                         Monstro:  ${enemy.name}  `);
+            console.log(`⎳ ⎲       Vida: ${creator.stats.health}/${creator.stats.max_health}                          |                         Vida: ${enemy.stats.health}  `);
+            console.log(`⎳ ⎲          Força: ${creator.stats.strength}                       |                         Força: ${enemy.stats.strength}  `);
+            console.log(`⎳ ⎲          Armadura: ${creator.stats.armor}                     |                         Armadura: ${enemy.stats.armor}  `);
+            console.log(`⎳ ⎲       Stamina: ${creator.stats.stamina}/${creator.stats.max_stamina}     `);
+            console.log(`⎳ ⎲       Mana: ${creator.stats.mana}/${creator.stats.max_mana}               `);
+            console.log(`⎳ ⎲       Dextreza: ${creator.stats.dexterity}          `);
+            console.log(`⎳ ⎲       Inteligência: ${creator.stats.intelligence}     `);
+            console.log(`⎳ ⎲       Nivel: ${creator.stats.nivel}        `);
+            console.log(`⎳ ⎲       Gold: ${creator.gold}`);
+            console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
+            console.log("");
+            console.log("⫍ ——————————————————————————————————————————————————— ⥞ ⦾ ⥟ ——————————————————————————————————————————————————— ⫎");
+            console.log("");
+
+            if (enemy.stats.health <= 0) {
+                console.log(`${enemy.name} morreu ⤜(*.*)⤏ . Parabens pelo seu feito!! `);
+                break;
             }
         }
     }
