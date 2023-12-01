@@ -25,7 +25,7 @@ export class Creator {
   characterCreator() {
     this.nick = write("Digite o nome do seu personagem: ");
     console.log("");
-    console.log("¤*¨¨*¤.¸¸…¸.¤ Regiões do mundo de Eldorium ¤*¨¨*¤.¸¸…¸.¤");
+    console.log("¤*¨¨*¤.¸¸…¸.¤ Regiões do mundo de Eldorum ¤*¨¨*¤.¸¸…¸.¤");
     console.log("");
     console.log("1 - Reino de Arton (Região habitada por Humanos e Anões)");
     console.log("");
