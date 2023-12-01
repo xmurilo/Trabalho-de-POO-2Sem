@@ -17,11 +17,12 @@ import {
   Fairy,
 } from "./Non_Player/Enemy";
 import { Skills } from "./Skills";
+import { Combat } from "./Combat";
 
 const prompt = require("prompt-sync")();
 const write = prompt;
 
-let mobs: Enemy[] = [];
+let mobs:  Enemy[] = [] ;
 let bosses: Enemy[] = [];
 
 // Aplicando mobs ao array mobs:
@@ -42,9 +43,11 @@ bosses.push(new Gladimir(), new Edecio(), new Bruna(), new Angelo());
 export class Util {
   public stats: Stats;
   public inventory: Inventory;
+  public combat: Combat;
   constructor() {
     this.stats = new Stats();
     this.inventory = new Inventory();
+    this.combat = new Combat();
   }
 
   checkMaxHealth(creator: Creator): number {
@@ -95,5 +98,14 @@ export class Util {
     console.log("");
     console.log("Vida: " + creator.stats.health + " Mana: " + creator.stats.mana + " Stamina: " + creator.stats.stamina);
     console.log("");
+  }
+
+  explore(creator: Creator) {
+  
+    let randomEnemy = Util.random(0, mobs.length - 1)
+    if (mobs[randomEnemy].stats.health <= 0) {
+      mobs[randomEnemy].stats.health = mobs[randomEnemy].stats.max_health;
+    }
+    this.combat.mobFight(creator, mobs[randomEnemy]);
   }
 }
