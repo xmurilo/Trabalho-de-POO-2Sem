@@ -51,7 +51,7 @@ export class Combat{
     public death(creator: Creator, enemy: Enemy): void{
         if(enemy.stats.health <= 0){
             enemy.stats.health = 0;
-            creator.gold += Math.floor(Util.random(1, 100) + 30);
+            this.inventory.gold += Math.floor(Util.random(1, 100) + 30);
             creator.stats.xp += Math.floor(Util.random(1, 100) + 10);
             creator.levelUp(creator);
         }else{
@@ -70,7 +70,7 @@ export class Combat{
         if(enemy.stats.health <= 0){
             enemy.stats.health = 0;
             const gold = Math.floor(Util.random(1, 100) + 70)
-            creator.gold += gold;
+            this.inventory.gold += gold;
             creator.stats.xp += 150; 
             creator.levelUp(creator);
             console.log("");
@@ -164,6 +164,10 @@ export class Combat{
 
                 if (enemy.stats.health <= 0) {
                     console.log(`${enemy.name} morreu ⤜(*.*)⤏ . Parabens pelo seu feito!! `);
+                    const gold = Math.floor(Util.random(1, 100) + 30)
+                    console.log("");
+                    console.log(`Você ganhou ${gold} de ouro!`);
+                    creator.gold += gold
                     break;
                 }
         }

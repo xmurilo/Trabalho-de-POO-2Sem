@@ -35,7 +35,7 @@ export class Creator {
     console.log("3 - Ilhas Esquecidas (Região habitada por Tritões e Anjos)");
     console.log("");
     console.log("");
-    this.region = write("¤*¨¨*¤.¸¸…¸.¤ Escolha a região que você quer nascer");
+    this.region = write("¤*¨¨*¤.¸¸…¸.¤ Escolha a região que você quer nascer ");
 
     // ESCOLHENDO A REGIÃO
 
@@ -47,7 +47,7 @@ export class Creator {
     ) {
       console.log("");
       this.race = write(
-        "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Humano ou Anão)",
+        "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Humano ou Anão) ",
       ).toLowerCase();
       console.log("");
     } else if (
@@ -58,7 +58,7 @@ export class Creator {
     ) {
       console.log("");
       this.race = write(
-        "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Elfo ou Sylfo)",
+        "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Elfo ou Sylfo) ",
       ).toLowerCase();
       console.log("");
     } else if (
@@ -66,7 +66,7 @@ export class Creator {
     ) {
       console.log("");
       this.race = write(
-        "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Tritão ou Anjo)",
+        "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Tritão ou Anjo) ",
       ).toLowerCase();
       console.log("");
     } else {
@@ -295,22 +295,22 @@ export class Creator {
         console.log("3 - Inteligência");
         console.log("");
 
-        let qnt = write("Digite a quantidade que você quer aumentar: ");
+        let qnt: number = +write("Digite a quantidade que você quer aumentar: ");
 
         let atribute = write("Digite o atributo que você quer aumentar: ");
 
         console.log("");
 
         if (atribute == "1" || atribute == "força" || atribute == "forca") {
-          creator.stats.strength += Number(qnt);
+          creator.stats.strength += qnt;
           points -= Number(qnt);
           console.log(`Você aumentou ${qnt} pontos em Força!`);
         } else if (atribute == "2" || atribute == "destreza") {
-          creator.stats.dexterity += Number(qnt);
+          creator.stats.dexterity += qnt;
           points -= Number(qnt);
           console.log(`Você aumentou ${qnt} pontos em Destreza!`);
         } else if (atribute == "3" || atribute == "inteligência" || atribute == "inteligencia") {
-          creator.stats.intelligence += Number(qnt);
+          creator.stats.intelligence += qnt;
           points -= Number(qnt);
           console.log(`Você aumentou ${qnt} pontos em Inteligência!`);
         }

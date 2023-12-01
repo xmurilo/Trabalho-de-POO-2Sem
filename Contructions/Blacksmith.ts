@@ -3,7 +3,7 @@ const write = prompt;
 import { Creator } from "../Creator";
 import { Item } from "../Inventory/Item";
 import { Weapon } from "../Weapons";
-import { City } from "./city";
+import { City } from "./City";
 
 export class Blacksmith extends City {
   public services(creator: Creator): void {
@@ -33,10 +33,10 @@ export class Blacksmith extends City {
 
         switch (itemChoice) {
           case "1":
-            selectedItem = new Weapon("Espada de Ferro", 10, "Espada", 50);
+            selectedItem = new Weapon("Espada de Ferro", 10,  50);
             break;
           case "2":
-            selectedItem = new Weapon("Machado de Batalha", 15, "Machado", 70);
+            selectedItem = new Weapon("Machado de Batalha", 15, 70);
             break;
           case "3":
             selectedItem = new Item("Armadura de Couro", 40);
@@ -92,10 +92,10 @@ export class Blacksmith extends City {
 
         switch (itemChoice) {
           case "1":
-            selectedItem = new Weapon("Espada de Ferro", 10, "Espada", 50);
+            selectedItem = new Weapon("Espada de Ferro", 10, 50);
             break;
           case "2":
-            selectedItem = new Weapon("Machado de Batalha", 15, "Machado", 70);
+            selectedItem = new Weapon("Machado de Batalha", 15, 70);
             break;
           case "3":
             selectedItem = new Item("Armadura de Couro", 40);
