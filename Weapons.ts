@@ -13,7 +13,6 @@ export class Weapon {
   // Construtor da classe Weapon
   constructor(
     private readonly _name: string, // Nome da arma (valor estático)
-    private readonly _type: string, // Tipo da arma (valor estático)
     private _damage: number, // Dano da arma (pode ser modificado)
     private _value: number // Valor da arma (pode ser modificado)
   ) {
@@ -43,13 +42,11 @@ export class Weapon {
       case weaponRarity.Incomum:
         return 'Incomum';
       case weaponRarity.Rare:
-        return 'Rare';
+        return 'Rara';
       case weaponRarity.Epic:
-        return 'Epic';
+        return 'Epica';
       case weaponRarity.Legendary:
-        return 'Legendary';
-      default:
-        return 'Desconhecida';
+        return 'Legendaria';
     }
   }
 
@@ -63,10 +60,6 @@ export class Weapon {
     return this._damage;
   }
 
-  // Getter para obter o tipo da arma
-  get type() {
-    return this._type;
-  }
 
   // Getter para obter a raridade da arma
   get raridade() {
@@ -92,12 +85,16 @@ export class Weapon {
 
 // Lista de armas no jogo
 const armas: Weapon[] = [
-  new Weapon('Arco Longo', 'Perfuração', 45, 80),
-  new Weapon('Maça de Guerra', 'Impacto', 55, 120),
-  new Weapon('Espada Bastarda', 'Corte', 60, 150),
-  new Weapon('Arco Curto', 'Perfuração', 25, 40),
-  new Weapon('Machado de Batalha', 'Corte', 35, 80),
-  new Weapon('Lança', 'Perfuração', 30, 60),
+  new Weapon('Arco Longo', 45, 80),
+  new Weapon('Arco Curto', 25, 40),
+  new Weapon('Maça de Guerra', 55, 120),
+  new Weapon('Cajado', 20, 30),
+  new Weapon('Espada Bastarda', 60, 150),
+  new Weapon('Espada Longa', 75, 100),
+  new Weapon('Machado de Batalha', 35, 80),
+  new Weapon('Lança', 30, 60),
+  new Weapon('Adaga', 15, 20),
+  new Weapon('Porrete', 10, 10),
 ];
 
 // Função para obter uma arma aleatória da lista
