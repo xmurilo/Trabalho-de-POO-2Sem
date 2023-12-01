@@ -200,7 +200,7 @@ export class Creator {
     // ESCOLHENDO A CLASSE
 
     console.log("");
-    console.log("¤*¨¨*¤.¸¸…¸.¤ Classes do mundo de Eldorium ¤*¨¨*¤.¸¸…¸.¤");
+    console.log("¤*¨¨*¤.¸¸…¸.¤ Classes do mundo de Eldorum ¤*¨¨*¤.¸¸…¸.¤");
     console.log("");
     console.log("1 - Guerreiro");
     console.log("2 - Mago");
@@ -247,7 +247,7 @@ export class Creator {
       console.log("Classe inexistente, favor digitar corretamente!");
     }
 
-    console.warn(`Bem vindo ao mundo de Eldorium\n
+    console.warn(`Bem vindo ao mundo de Eldorum\n
     Voce se encontra em uma carruagem e esta sendo levado\n 
     para a cidade de Everglen para se encontrar com o Rei Arthen\n
     para ser recrutado pela guarda Real, mas um grupo de Goblins\n
