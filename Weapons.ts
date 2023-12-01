@@ -6,32 +6,38 @@ enum weaponRarity {
   Legendary,
 }
 
+// Classe Weapon representa uma arma no jogo
 export class Weapon {
-  constructor(
-    private _name: string,
-    private _damage: number,
-    private _type: string,
-    private _value: number,
-  ) {}
+  private _rarity: weaponRarity = weaponRarity.Comum; // Armazena a raridade da arma
 
-  defineRarity(damage: number): weaponRarity {
-    if (damage < 20) {
-      return weaponRarity.Comum;
-    } else if (damage >= 20 && damage < 50) {
-      return weaponRarity.Incomum;
-    } else if (damage >= 50 && damage < 60) {
-      return weaponRarity.Rare;
-    } else if (damage >= 60 && damage < 80) {
-      return weaponRarity.Epic;
-    } else if (damage > 80) {
-      return weaponRarity.Legendary;
+  // Construtor da classe Weapon
+  constructor(
+    private readonly _name: string, // Nome da arma (valor estático)
+    private readonly _type: string, // Tipo da arma (valor estático)
+    private _damage: number, // Dano da arma (pode ser modificado)
+    private _value: number // Valor da arma (pode ser modificado)
+  ) {
+    this.defineRarity(); // Chama o método para definir a raridade com base no dano
+  }
+
+  // Método privado para definir a raridade com base no dano
+  private defineRarity(): void {
+    if (this._damage < 20) {
+      this._rarity = weaponRarity.Comum;
+    } else if (this._damage < 50) {
+      this._rarity = weaponRarity.Incomum;
+    } else if (this._damage < 60) {
+      this._rarity = weaponRarity.Rare;
+    } else if (this._damage < 80) {
+      this._rarity = weaponRarity.Epic;
     } else {
-      return weaponRarity.Comum;
+      this._rarity = weaponRarity.Legendary;
     }
   }
 
-  getRarityString() {
-    switch (this.defineRarity(this._damage)) {
+  // Método para obter uma string representando a raridade da arma
+  getRarityString(): string {
+    switch (this._rarity) {
       case weaponRarity.Comum:
         return 'Comum';
       case weaponRarity.Incomum:
@@ -42,54 +48,60 @@ export class Weapon {
         return 'Epic';
       case weaponRarity.Legendary:
         return 'Legendary';
+      default:
+        return 'Desconhecida';
     }
   }
 
+  // Getter para obter o nome da arma
   get name() {
     return this._name;
   }
 
+  // Getter para obter o dano da arma
   get damage() {
     return this._damage;
   }
 
+  // Getter para obter o tipo da arma
   get type() {
     return this._type;
   }
 
+  // Getter para obter a raridade da arma
   get raridade() {
     return this.getRarityString();
   }
 
+  // Getter para obter o valor da arma
   get value() {
     return this._value;
   }
 
+  // Método para aumentar o dano da arma
   increaseDamage(amount: number): void {
     this._damage += amount;
+    this.defineRarity(); // Recalcula a raridade após a modificação do dano
   }
+
+  // Método para aumentar o valor da arma
   increaseValue(amount: number): void {
     this._value += amount;
   }
 }
 
+// Lista de armas no jogo
 const armas: Weapon[] = [
-  new Weapon('Arco Longo', 45, 'Perfuração', 80),
-  new Weapon('Maça de Guerra', 55, 'Impacto', 120),
-  new Weapon('Lança', 30, 'Perfuração', 50),
-  new Weapon('Machado de Batalha', 70, 'Corte', 100),
-  new Weapon('Florete', 35 , 'Perfuração', 60),
-  new Weapon('Besta', 40, 'Perfuração', 90),
-  new Weapon('Clava Espinhosa', 50, 'Impacto', 70),
-  new Weapon('Cajado de Curandeiro', 25, 'Magia', 110),
-  new Weapon('Espada Bastarda', 60, 'Corte', 95),
-  new Weapon('Flechas da Voracidade', 48, 'Perfuração', 75),
-]
+  new Weapon('Arco Longo', 'Perfuração', 45, 80),
+  new Weapon('Maça de Guerra', 'Impacto', 55, 120),
+  new Weapon('Espada Bastarda', 'Corte', 60, 150),
+  new Weapon('Arco Curto', 'Perfuração', 25, 40),
+  new Weapon('Machado de Batalha', 'Corte', 35, 80),
+  new Weapon('Lança', 'Perfuração', 30, 60),
+];
 
+// Função para obter uma arma aleatória da lista
 export const randomWeapon = (): Weapon => {
   const randomIndex = Math.floor(Math.random() * armas.length);
   return armas[randomIndex];
-}
-
-;
-
+};
