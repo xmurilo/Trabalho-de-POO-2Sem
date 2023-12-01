@@ -106,7 +106,7 @@ export class Angelo extends Enemy{
     }
 
     public atack(creator: Creator){
-        console.log("Você realmente chegou até aqui?! HAHAHAHAHAHAHA QUERO VER VOCÊ SOBREVIVER A ISSO!!!!");
+        console.log("‼️‼️‼️ ➡️➡️ Você realmente chegou até aqui?! HAHAHAHAHAHAHA QUERO VER VOCÊ SOBREVIVER A ISSO!!!! ⬅️⬅️ ‼️‼️‼️ ");
         const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
         if (hit) {
             let damage = 30 + this.stats.strength 
