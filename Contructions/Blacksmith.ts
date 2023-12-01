@@ -144,7 +144,7 @@ export class Blacksmith extends City {
             this.creator.gold -= selectedItem.value;
             selectedItem.increaseDamage(5);
             console.log(`Você melhorou ${selectedItem.name} por ${selectedItem.value} de ouro`);
-            selectedItem.increaveValue(10);
+            selectedItem.increaseValue(10);
           } else {
             console.log('Você não tem ouro suficiente');
           }
