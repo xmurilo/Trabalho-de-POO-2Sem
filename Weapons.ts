@@ -68,7 +68,7 @@ export class Weapon {
   increaseDamage(amount: number): void {
     this._damage += amount;
   }
-  increaveValue(amount: number): void {
+  increaseValue(amount: number): void {
     this._value += amount;
   }
 }
