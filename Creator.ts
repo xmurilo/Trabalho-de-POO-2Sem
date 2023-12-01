@@ -283,7 +283,17 @@ export class Creator {
         creator.stats.nivel += 1
         creator.stats.max_xp += 100
         creator.stats.xp = 0
-        console.log(`LEVEL UP!!! Você subiu para o nível ${creator.stats.nivel}!`);
+
+        console.log(`  _                   _   _   _       _ _ 
+                      | |    _____   _____| | | | | |_ __ | | |
+                      | |   / _ \ \ / / _ \ | | | | | '_ \| | |
+                      | |__|  __/\ V /  __/ | | |_| | |_) |_|_|
+                      |_____\___| \_/ \___|_|  \___/| .__/(_|_)
+                                                    |_|        `);
+        
+        console.log("");
+        
+        console.log(` ➡️➡️ Você subiu para o nível ${creator.stats.nivel}!  ⬅️⬅️`);
         console.log(`Você agora tem 10 Pontos para distribuir em seus atributos, escolha sabiamente!`);
 
         let points = 10
