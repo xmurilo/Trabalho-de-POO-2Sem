@@ -1,4 +1,4 @@
-enum RewardType {
+export enum RewardType {
   ITEM = 'item',
   MONEY = 'money',
 }
@@ -23,7 +23,6 @@ export class Quest {
     } else {
       rewardDescription = `${this._reward.value} Gold`;
     }
-
     return `Quest: ${this._description}\nRecompensa → ${rewardDescription}`;
   }
 }
