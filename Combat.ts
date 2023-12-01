@@ -20,13 +20,13 @@ export class Combat{
     public ilusionDart: IlusionDart;
     public deathVision: DeathVision;
     public inventory: Inventory;
-    constructor(){
+    constructor(creator:Creator){
         this.creator = new Creator();
-        this.skill = new Skills(); 
-        this.berserkImpact = new BerserkImpact();
-        this.desintegratorBolt = new DesintegratorBolt();
-        this.ilusionDart = new IlusionDart();
-        this.deathVision = new DeathVision();
+        this.skill = new Skills(creator); 
+        this.berserkImpact = new BerserkImpact(creator);
+        this.desintegratorBolt = new DesintegratorBolt(creator);
+        this.ilusionDart = new IlusionDart(creator);
+        this.deathVision = new DeathVision(creator);
         this.inventory = new Inventory();
     }
 
@@ -155,7 +155,7 @@ export class Combat{
                 console.log(`⎳ ⎲       Mana: ${creator.stats.mana}/${creator.stats.max_mana}               `);
                 console.log(`⎳ ⎲       Dextreza: ${creator.stats.dexterity}          `);
                 console.log(`⎳ ⎲       Inteligência: ${creator.stats.intelligence}     `);
-                console.log(`⎳ ⎲       Nivel: ${creator.stats.nivel}        `);
+                console.log(`⎳ ⎲       level: ${creator.stats.level}        `);
                 console.log(`⎳ ⎲       Gold: ${creator.gold}`);
                 console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
                 console.log("");
@@ -181,7 +181,7 @@ export class Combat{
         console.log(`⎳ ⎲       Armadura: ${enemy.stats.armor}  `);
         console.log(`⎳ ⎲  `);
         console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳`);
-        let back : Util = new Util();
+        let back : Util = new Util(creator);
 
         while(enemy.stats.health > 0 || creator.stats.health > 0){
             console.log("");
@@ -227,7 +227,7 @@ export class Combat{
             console.log(`⎳ ⎲       Mana: ${creator.stats.mana}/${creator.stats.max_mana}               `);
             console.log(`⎳ ⎲       Dextreza: ${creator.stats.dexterity}          `);
             console.log(`⎳ ⎲       Inteligência: ${creator.stats.intelligence}     `);
-            console.log(`⎳ ⎲       Nivel: ${creator.stats.nivel}        `);
+            console.log(`⎳ ⎲       level: ${creator.stats.level}        `);
             console.log(`⎳ ⎲       Gold: ${creator.gold}`);
             console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
             console.log("");
