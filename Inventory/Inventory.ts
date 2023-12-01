@@ -25,15 +25,13 @@ export class Inventory {
   showInventory(): void {
     console.log("Inventário:");
     console.log("");
-    console.log("Itens:");
+    console.log("====Itens====");
     console.log("");
     this.items.forEach(item => {
       console.log(`${item.name} - Valor: ${item.value}`);
     });
     console.log("");
-    console.log("Gold:");
-    console.log("");
-    console.log(this.gold);
+    console.log(`Gold ==> ${this.gold}`);
     console.log("");
   }
 
