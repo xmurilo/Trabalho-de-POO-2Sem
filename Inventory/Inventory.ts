@@ -7,7 +7,7 @@ export class Inventory {
 
   constructor() {
     this.items = [];
-    this.gold = 0;
+    this.gold = 10000;
   }
 
   addItem(item: Item | Weapon): void {
@@ -23,14 +23,12 @@ export class Inventory {
   }
 
   showInventory(): void {
-    console.log("Inventário:");
-    console.log("");
-    console.log("====Itens====");
-    console.log("");
+    console.log("====Inventário====");
     this.items.forEach(item => {
-      console.log(`${item.name} - Valor: ${item.value}`);
+      console.log(`==>${item.name} - Valor: ${item.value}==`);
     });
-    console.log("");
+    console.log("==================");
+    console.log("====Gold====");
     console.log(`Gold ==> ${this.gold}`);
     console.log("");
   }
