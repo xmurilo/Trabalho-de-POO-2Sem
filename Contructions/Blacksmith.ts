@@ -3,7 +3,8 @@ const write = prompt;
 import { Creator } from "../Creator";
 import { Item } from "../Inventory/Item";
 import { Weapon } from "../Weapons";
-import { City } from "./City";
+import { City } from "./city";
+import { HealingItem } from "../Inventory/Item";
 
 export class Blacksmith extends City {
   public services(creator: Creator): void {
@@ -33,7 +34,7 @@ export class Blacksmith extends City {
 
         switch (itemChoice) {
           case "1":
-            selectedItem = new Weapon("Espada de Ferro", 10,  50);
+            selectedItem = new Weapon("Espada de Ferro", 10, 50);
             break;
           case "2":
             selectedItem = new Weapon("Machado de Batalha", 15, 70);
@@ -42,15 +43,17 @@ export class Blacksmith extends City {
             selectedItem = new Item("Armadura de Couro", 40);
             break;
           case "4":
-            selectedItem = new Item("Poção de Vida", 30);
+            selectedItem = new HealingItem("Poção de Vida Pequena", 30, 15);
             break;
           case "5":
+            selectedItem = new HealingItem("Poção de Vida Grande", 30, 30);
+          case "6":
             selectedItem = new Item("Poção de Mana", 30);
             break;
-          case "6":
+          case "7":
             selectedItem = new Item("Poção de Stamina", 30);
             break;
-          case "7":
+          case "8":
             break;
           default:
             console.log("Opção inválida. Por favor, escolha um número válido.");
@@ -58,16 +61,16 @@ export class Blacksmith extends City {
         }
 
         if (selectedItem instanceof Weapon) {
-          if (this.creator.gold >= selectedItem.value) {
-            this.creator.gold -= selectedItem.value;
+          if (this.util.inventory.gold >= selectedItem.value) {
+            this.util.inventory.gold -= selectedItem.value;
             this.util.inventory.addItem(selectedItem);
             console.log(`Você comprou ${selectedItem.name} por ${selectedItem.value} de ouro`);
           } else {
             console.log("Você não tem ouro suficiente");
           }
         } else if (selectedItem instanceof Item) {
-          if (this.creator.gold >= selectedItem.value) {
-            this.creator.gold -= selectedItem.value;
+          if (this.util.inventory.gold >= selectedItem.value) {
+            this.util.inventory.gold -= selectedItem.value;
             this.util.inventory.addItem(selectedItem);
             console.log(`Você comprou ${selectedItem.name} por ${selectedItem.value} de ouro`);
           } else {
@@ -78,49 +81,28 @@ export class Blacksmith extends City {
         break; // Encerrando o loop depois da compra, mas você pode continuar caso deseje
       } else if (option === "2") {
         console.log("Itens disponíveis para venda:");
-        console.log("1 - Espada de Ferro (10 de ouro)");
-        console.log("2 - Machado de Batalha (15 de ouro)");
-        console.log("3 - Armadura de Couro (20 de ouro)");
-        console.log("4 - Poção de Vida (15 de ouro)");
-        console.log("5 - Poção de Mana (15 de ouro)");
-        console.log("6 - Poção de Stamina (15 de ouro)");
+        this.util.inventory.items.map((item, index) => {
+          console.log(`${index} - ${item.name} | Valor: ${item.value} de ouro`);
+        });
         console.log("7 - Voltar");
 
         const itemChoice = write("Escolha o número do item que deseja vender: ");
 
-        let selectedItem: Item | Weapon | null = null;
+        let selectedItem: Item | Weapon | HealingItem | null = null;
 
-        switch (itemChoice) {
-          case "1":
-            selectedItem = new Weapon("Espada de Ferro", 10, 50);
-            break;
-          case "2":
-            selectedItem = new Weapon("Machado de Batalha", 15, 70);
-            break;
-          case "3":
-            selectedItem = new Item("Armadura de Couro", 40);
-            break;
-          case "4":
-            selectedItem = new Item("Poção de Vida", 30);
-            break;
-          case "5":
-            selectedItem = new Item("Poção de Mana", 30);
-            break;
-          case "6":
-            selectedItem = new Item("Poção de Stamina", 30);
-            break;
-          case "7":
-            break;
-          default:
-            console.log("Opção inválida. Por favor, escolha um número válido.");
-            break;
+        if (itemChoice === "7") {
+          break;
         }
-        if (selectedItem instanceof Weapon && this.util.inventory.hasItem(selectedItem)) {
-          this.creator.gold += selectedItem.value;
+
+        selectedItem = this.util.inventory.items[+itemChoice];
+
+        if (selectedItem instanceof Weapon 
+          && this.util.inventory.hasItem(selectedItem)) {
+            this.util.inventory.gold += selectedItem.value;
           this.util.inventory.removeItem(selectedItem);
           console.log(`Você vendeu ${selectedItem.name} por ${selectedItem.value} de ouro`);
         } else if (selectedItem instanceof Item && this.util.inventory.hasItem(selectedItem)) {
-          this.creator.gold += selectedItem.value;
+          this.util.inventory.gold += selectedItem.value;
           this.util.inventory.removeItem(selectedItem);
           console.log(`Você vendeu ${selectedItem.name} por ${selectedItem.value} de ouro`);
         }
@@ -144,8 +126,8 @@ export class Blacksmith extends City {
         const itemChoice = write("Escolha o número do item que deseja melhorar: ");
         const selectedItem = this.util.inventory.items[parseInt(itemChoice)];
         if (selectedItem instanceof Weapon) {
-          if (this.creator.gold >= selectedItem.value) {
-            this.creator.gold -= selectedItem.value;
+          if (this.util.inventory.gold >= selectedItem.value) {
+            this.util.inventory.gold -= selectedItem.value;
             selectedItem.increaseDamage(5);
             console.log(`Você melhorou ${selectedItem.name} por ${selectedItem.value} de ouro`);
             selectedItem.increaseValue(10);
@@ -163,4 +145,3 @@ export class Blacksmith extends City {
     }
   }
 }
-
