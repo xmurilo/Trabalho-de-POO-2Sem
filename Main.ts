@@ -73,7 +73,7 @@ export function main() {
 export function city() {
   while (true) {
     console.log("====== Menu de Ações ======");
-    console.log("1. Ir para a loja");
+    console.log("1. Ir para a Ferreiro");
     console.log("2. Voltar");
     console.log("===========================");
     const action: number = parseInt(write("Escolha sua ação: "));
