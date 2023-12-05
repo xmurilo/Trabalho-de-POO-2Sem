@@ -141,7 +141,7 @@ export class Combat{
             }
             if (choice == "4") {
                 this.inventory.showInventory();
-                this.deathBoss(creator, enemy);
+                this.death(creator, enemy);
             }
             console.log("⫍ ——————————————————————————————————————————————————— ⥚ ⦾ ⥛ ——————————————————————————————————————————————————— ⫎");
                 console.log("");
@@ -156,7 +156,7 @@ export class Combat{
                 console.log(`⎳ ⎲       Dextreza: ${creator.stats.dexterity}          `);
                 console.log(`⎳ ⎲       Inteligência: ${creator.stats.intelligence}     `);
                 console.log(`⎳ ⎲       level: ${creator.stats.level}        `);
-                console.log(`⎳ ⎲       Gold: ${creator.gold}`);
+                console.log(`⎳ ⎲       Gold: ${this.inventory.gold}`);
                 console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
                 console.log("");
                 console.log("⫍ ——————————————————————————————————————————————————— ⥞ ⦾ ⥟ ——————————————————————————————————————————————————— ⫎");
@@ -167,7 +167,7 @@ export class Combat{
                     const gold = Math.floor(Util.random(1, 100) + 30)
                     console.log("");
                     console.log(`Você ganhou ${gold} de ouro!`);
-                    creator.gold += gold
+                    this.inventory.gold += gold
                     break;
                 }
         }
@@ -185,7 +185,7 @@ export class Combat{
         console.log(`⎳ ⎲       Armadura: ${enemy.stats.armor}  `);
         console.log(`⎳ ⎲  `);
         console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳`);
-        let back : Util = new Util(creator);
+        
 
         while(enemy.stats.health > 0 || creator.stats.health > 0){
             console.log("");
@@ -232,7 +232,7 @@ export class Combat{
             console.log(`⎳ ⎲       Dextreza: ${creator.stats.dexterity}          `);
             console.log(`⎳ ⎲       Inteligência: ${creator.stats.intelligence}     `);
             console.log(`⎳ ⎲       level: ${creator.stats.level}        `);
-            console.log(`⎳ ⎲       Gold: ${creator.gold}`);
+            console.log(`⎳ ⎲       Gold: ${this.inventory.gold}`);
             console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
             console.log("");
             console.log("⫍ ——————————————————————————————————————————————————— ⥞ ⦾ ⥟ ——————————————————————————————————————————————————— ⫎");
