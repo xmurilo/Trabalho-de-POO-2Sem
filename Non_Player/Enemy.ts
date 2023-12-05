@@ -100,6 +100,20 @@ export class Bruna extends Enemy{
     }
 }
 
+export class Murilao extends Enemy{
+    constructor(){
+        super("Murilão", 120, 120, 20, 10, 2, 50)
+    }
+
+    public atack(creator: Creator){
+        const hit: boolean = Util.random(1, 100) >= creator.stats.dexterity
+        if (hit) {
+            let damage = 20 + this.stats.strength 
+            creator.stats.health -= damage
+        }
+    }
+}
+
 export class Angelo extends Enemy{
     constructor(){
         super("Angelo", 150, 150, 20, 30, 2, 50)
