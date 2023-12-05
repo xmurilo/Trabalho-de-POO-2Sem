@@ -311,6 +311,11 @@ export class Creator {
         let atribute = write("Digite o atributo que você quer aumentar: ");
 
         console.log("");
+ 
+        if (qnt > points) {
+          console.log(`Pontos insuficientes. Você tem apenas ${points} pontos. Tente novamente.`);
+          continue;
+        }
 
         if (atribute == "1" || atribute == "força" || atribute == "forca") {
           creator.stats.strength += qnt;
