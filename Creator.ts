@@ -15,7 +15,6 @@ export class Creator {
   race: Race | "" = "";
   class: string = "";
 
-
   constructor() {
     this.stats = new Stats();
     this.skills = new Skills(this);
