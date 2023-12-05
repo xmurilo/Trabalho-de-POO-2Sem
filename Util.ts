@@ -125,7 +125,7 @@ export class Util {
 
   travel(creator: Creator) {
     console.log("");
-    let choice = prompt("Você deseja viajar para o Norte, Sul, Leste ou Oeste? ").toLowerCase();
+    let choice = prompt("Você deseja viajar para o Norte, Sul, Leste, Oeste ou Centro? ").toLowerCase();
     console.log("");
     let north: boolean = true;
     let south: boolean = true;
@@ -192,23 +192,31 @@ export class Util {
           console.log("Você já derrotou esse Boss!");
         }
         break;
+      
+      case "centro":
+        console.log("Você derrotou todos os Bosses, agora você pode enfrentar o Boss Final!");
+        console.log("");
+        console.log("Seja MASSACRADO HAHAHAHAHA");
+        if (bosses[4].stats.health > 0) {
+          if (creator.stats.level >= 5) {
+            this.combat.mobFight(creator, bosses[3]);
+            if (bosses[4].stats.health <= 0) {
+              console.log(`Você derrotou o Boss Final ${bosses[4].name} e salvou o mundo!`);
+              process.exit();
+            }
+          } else {
+            console.log("Você não tem nível suficiente para lutar contra o Boss!");
+          }
+        }else{
+          console.log("Você já derrotou esse Boss!");
+        }
+        break;
 
       default:
         console.log("Você não escolheu uma direção válida!");
         console.log("");
         break;   
-    }
-    if (north == false && south == false && east == false && west == false && creator.stats.level >= 3) {
-      console.log("Você derrotou todos os Bosses, agora você pode enfrentar o Boss Final!");
-      console.log("");
-      console.log("Seja MASSACRADO HAHAHAHAHA");
-      this.combat.bossFight(creator, bosses[4]);
-      if (bosses[4].stats.health <= 0) {
-        console.log(`Você derrotou o Boss Final ${bosses[4].name} e salvou o mundo!`);
-        process.exit();
       }
-    }
-
   }
 
   explore(creator: Creator) {
