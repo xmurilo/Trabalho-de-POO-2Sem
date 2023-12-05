@@ -79,7 +79,18 @@ export class Util {
     return rounded;
   }
   showStats(creator: Creator): void {
-    return console.log(creator.stats);
+    return console.log(
+     `====Status====
+      Vida: ${creator.stats.health}/${creator.stats.max_health}
+      Força: ${creator.stats.strength}
+      Stamina: ${creator.stats.stamina}/${creator.stats.max_stamina}
+      Mana: ${creator.stats.mana}/${creator.stats.max_mana}
+      Inteligência: ${creator.stats.intelligence}
+      Destreza: ${creator.stats.dexterity}
+      Armadura: ${creator.stats.armor}
+      Nivel: ${creator.stats.level}
+      Xp: ${creator.stats.xp}/${creator.stats.max_xp}` 
+    );
   }
 
   rest(creator: Creator) {
@@ -110,7 +121,8 @@ export class Util {
     );
     console.log("");
   }
-  travel(creator: Creator) {}
+  travel(creator: Creator) {
+  }
 
   explore(creator: Creator) {
     let randomEnemy = Util.random(0, mobs.length - 1);
