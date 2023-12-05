@@ -22,3 +22,4 @@ export class NPC {
 
 const dragonQuestAzarov = new Quest("Derrotar o dragão", { type: RewardType.MONEY, value: 10000 });
 const azarovNpc = new NPC("Azarov", [dragonQuestAzarov]);
+
