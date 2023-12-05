@@ -48,7 +48,7 @@ export function main() {
         break;
       case 3:
         // creator.travel();
-        console.log('Building...');
+        util.travel(creator);
         
         break;
       case 4:
@@ -85,7 +85,7 @@ export function city() {
 
     switch (action) {
       case 1:
-        blacksmith.services(creator);
+        blacksmith.services();
         break;
       case 2:
         main();
