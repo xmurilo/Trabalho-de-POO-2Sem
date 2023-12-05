@@ -4,19 +4,19 @@ import { Skills, BerserkImpact, DesintegratorBolt, DeathVision, IlusionDart } fr
 const prompt = require("prompt-sync")();
 const write = prompt;
 
+type Race = "humano" | "anão" | "elfo" | "sylfo" | "tritão" | "anjo";
+type Region = "Reino de Arton" | "Floresta de Alahan" | "Ilhas Esquecidas";
 export class Creator {
   public stats: Stats;
   public skills: Skills;
 
   nick: string = "";
-  region: string = "";
-  race: string = "";
+  regionName: Region | "" = "";
+  race: Race | "" = "";
   class: string = "";
   gold: number = 0;
 
-  constructor(
-  ) {
-
+  constructor() {
     this.stats = new Stats();
     this.skills = new Skills(this);
   }
@@ -35,89 +35,78 @@ export class Creator {
     console.log("3 - Ilhas Esquecidas (Região habitada por Tritões e Anjos)");
     console.log("");
     console.log("");
-    this.region = write("¤*¨¨*¤.¸¸…¸.¤ Escolha a região que você quer nascer ");
 
-    // ESCOLHENDO A REGIÃO
+    let validRegion = false;
+    const selectRegion = () => {
+      do {
+        const regionDistrict = write(
+          "¤*¨¨*¤.¸¸…¸.¤ Escolha a região que você quer ser: ",
+        ).toLowerCase();
+        switch (regionDistrict) {
+          case "1":
+            this.regionName = "Reino de Arton";
+            validRegion = true;
+            break;
+          case "2":
+            this.regionName = "Floresta de Alahan";
+            validRegion = true;
+            break;
+          case "3":
+            this.regionName = "Ilhas Esquecidas";
+            validRegion = true;
+            break;
+          default:
+            console.log("Região inexistente, favor digitar corretamente!");
+            continue;
+        }
+      } while (!validRegion);
+    };
+    selectRegion();
 
-    while (true) {
+    // ESCOLHENDO A RAÇA
+    let validRace = false;
+    const validRaceDistrict = (race: any): boolean => {
       if (
-        this.region == "1" ||
-        this.region == "Arton" ||
-        this.region == " Reino de Arton" ||
-        this.region == "reino de arton"
+        race != "humano" &&
+        race != "anão" &&
+        race != "elfo" &&
+        race != "sylfo" &&
+        race != "tritão" &&
+        race != "anjo"
       ) {
-        console.log("");
-        console.log("Escolha sua raça:");
-        console.log("1- Humano");
-        console.log("2- Anão");
-        this.race = write("Digite o número correspondente à sua escolha: ");
-    
-        if (this.race === "1" || this.race === "humano") {
-          this.race = "humano"; // Converte para o formato padrão
-          break;
-        } else if (this.race === "2" || this.race === "anão") {
-          this.race = "anão"; // Converte para o formato padrão
-          break;
-        } else {
-          console.log("Escolha de raça inválida. Por favor, escolha entre 1 (Humano) ou 2 (Anão).");
-        }
-      } else if (
-        this.region == "2" ||
-        this.region == "Floresta de Alahan" ||
-        this.region == "Alahan" ||
-        this.region == "floresta de alahan"
-      ) {
-        console.log("");
-        console.log("Escolha sua raça:");
-        console.log("1- Elfo");
-        console.log("2- Sylfo");
-        this.race = write("Digite o número correspondente à sua escolha: ");
-    
-        if (this.race === "1" || this.race === "elfo") {
-          this.race = "elfo"; // Converte para o formato padrão
-          break;
-        } else if (this.race === "2" || this.race === "sylfo") {
-          this.race = "sylfo"; // Converte para o formato padrão
-          break;
-        } else {
-          console.log("Escolha de raça inválida. Por favor, escolha entre 1 (Elfo) ou 2 (Sylfo).");
-        }
-      } else if (
-        this.region == "3" ||
-        this.region == "Ilhas Esquecidas" ||
-        this.region == "ilhas esquecidas"
-      ) {
-        console.log("");
-        console.log("Escolha sua raça:");
-        console.log("1- Tritão");
-        console.log("2- Anjo");
-        this.race = write("Digite o número correspondente à sua escolha: ");
-    
-        if (this.race === "1" || this.race === "tritão") {
-          this.race = "tritão"; // Converte para o formato padrão
-          break;
-        } else if (this.race === "2" || this.race === "anjo") {
-          this.race = "anjo"; // Converte para o formato padrão
-          break;
-        } else {
-          console.log("Escolha de raça inválida. Por favor, escolha entre 1 (Tritão) ou 2 (Anjo).");
-        }
+        console.log("Raça inexistente, favor digitar corretamente!");
+        return (validRace = false);
       } else {
-        console.log("Digite a região corretamente!");
-        break; // Se a região estiver incorreta, sai do loop para evitar um loop infinito.
+        return (validRace = true);
       }
-    }
+    };
 
-    // ESCOLHENDO A RAÇA DE CADA REGIÃO
+    do {
+      switch (this.regionName) {
+        case "Reino de Arton":
+          this.race = write(
+            "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Humano ou Anão) ",
+          ).toLowerCase();
+          validRaceDistrict(this.race);
+          break;
+        case "Floresta de Alahan":
+          this.race = write(
+            "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Elfo ou Sylfo) ",
+          ).toLowerCase();
+          validRaceDistrict(this.race);
+          break;
+        case "Ilhas Esquecidas":
+          this.race = write(
+            "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Tritão ou Anjo) ",
+          ).toLowerCase();
+          validRaceDistrict(this.race);
+          break;
+      }
+    } while (!validRace);
+
     // REINO DE ARTON
-
-    if (
-      this.region == "1" ||
-      this.region == "Arton" ||
-      this.region == " Reino de Arton" ||
-      this.region == "reino de arton"
-    ) {
-      // HUMANO
+    // HUMANO
+    if (this.regionName == "Reino de Arton") {
       if (this.race == "humano") {
         this.stats.level = 1;
         this.stats.health = 100;
@@ -152,14 +141,8 @@ export class Creator {
     }
 
     // FLORESTA DE ALAHAN
-
-    if (
-      this.region == "2" ||
-      this.region == "Floresta de Alahan" ||
-      this.region == "Alahan" ||
-      this.region == "floresta de alahan"
-    ) {
-      // ELFO
+    // ELFO
+    if (this.regionName == "Floresta de Alahan") {
       if (this.race == "elfo") {
         this.stats.level = 1;
         this.stats.health = 80;
@@ -194,11 +177,7 @@ export class Creator {
     }
 
     // ILHAS ESQUECIDAS
-
-    if (
-      (this.region = "3" || this.region == "Ilhas Esquecidas" || this.region == "ilhas esquecidas")
-    ) {
-      // TRITÃO
+    if (this.regionName == "Ilhas Esquecidas") {
       if (this.race == "tritão") {
         this.stats.level = 1;
         this.stats.health = 120;
@@ -213,9 +192,7 @@ export class Creator {
         this.stats.armor = 60;
         this.stats.xp = 0;
         this.stats.max_xp = 100;
-      }
-      // ANJO
-      else if (this.race == "anjo") {
+      } else if (this.race == "anjo") {
         this.stats.level = 1;
         this.stats.health = 100;
         this.stats.max_health = 100;
@@ -289,7 +266,7 @@ export class Creator {
     ataca a carruagem para matá-los e em meio à confusão você consegue escapar\n
     e se esconder em uma caverna, mas você não sabe onde esta.\n
     \n
-    Agora voce esta na/o ${this.region} `);
+    Agora voce esta na/o ${this.regionName} `);
 
     console.log("");
     console.log("»»———————Mini Dica———————««");
