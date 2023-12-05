@@ -50,7 +50,6 @@ export function main() {
         util.rest(creator);
         break;
       case 3:
-        // creator.travel();
         util.travel(creator);
         
         break;

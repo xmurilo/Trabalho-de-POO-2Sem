@@ -10,6 +10,10 @@ export class Inventory {
     this.gold = 0;
   }
 
+  increaseGold(value: number): void {
+    this.gold += value;
+  }
+
   addItem(item: Item | Weapon): void {
     this.items.push(item);
   }
