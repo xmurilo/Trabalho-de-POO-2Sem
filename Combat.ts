@@ -31,8 +31,8 @@ export class Combat{
     }
 
     public atack(creator: Creator, enemy: Enemy): void{
-        if (creator.stats.stamina >= 20) {
-            creator.stats.stamina -= 20;
+        if (creator.stats.stamina >= 5) {
+            creator.stats.stamina -= 5;
             let damage = 10 + creator.stats.strength - enemy.stats.armor;
             enemy.stats.health -= damage;
             enemy.atack(creator);
