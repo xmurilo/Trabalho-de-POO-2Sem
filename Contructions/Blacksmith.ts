@@ -7,9 +7,9 @@ import { City } from "./city";
 import { HealingItem } from "../Inventory/Item";
 
 export class Blacksmith extends City {
-  public services(creator: Creator): void {
+  public services(): void {
     console.log("Bem vindo a loja do ferreiro");
-    console.log(`Você tem: ${creator.gold} de ouro`);
+    console.log(`Você tem: ${this.util.inventory.gold} de Gold`);
     console.log("O que deseja fazer?");
     console.log("1 - Comprar");
     console.log("2 - Vender");
@@ -21,12 +21,12 @@ export class Blacksmith extends City {
     while (true) {
       if (option === "1") {
         console.log("Itens disponíveis para compra:");
-        console.log("1 - Espada de Ferro (50 de ouro)");
-        console.log("2 - Machado de Batalha (70 de ouro)");
-        console.log("3 - Armadura de Couro (40 de ouro)");
-        console.log("4 - Poção de Vida (30 de ouro)");
-        console.log("5 - Poção de Mana (30 de ouro)");
-        console.log("6 - Poção de Stamina (30 de ouro)");
+        console.log("1 - Espada de Ferro (50 de Gold)");
+        console.log("2 - Machado de Batalha (70 de Gold)");
+        console.log("3 - Armadura de Couro (40 de Gold)");
+        console.log("4 - Poção de Vida (30 de Gold)");
+        console.log("5 - Poção de Mana (30 de gold)");
+        console.log("6 - Poção de Stamina (30 de gold)");
         console.log("7 - Voltar");
 
         const itemChoice = write("Escolha o número do item que deseja comprar: ");
@@ -40,7 +40,7 @@ export class Blacksmith extends City {
             selectedItem = new Weapon("Machado de Batalha", 15, 70);
             break;
           case "3":
-            selectedItem = new Item("Armadura de Couro", 40);
+            selectedItem = new Item("Armadura de Cgold", 40);
             break;
           case "4":
             selectedItem = new HealingItem("Poção de Vida Pequena", 30, 15);
@@ -64,17 +64,19 @@ export class Blacksmith extends City {
           if (this.util.inventory.gold >= selectedItem.value) {
             this.util.inventory.gold -= selectedItem.value;
             this.util.inventory.addItem(selectedItem);
-            console.log(`Você comprou ${selectedItem.name} por ${selectedItem.value} de ouro`);
+            console.log(`Você comprou ${selectedItem.name} por ${selectedItem.value} de gold`);
+            continue;
           } else {
-            console.log("Você não tem ouro suficiente");
+            console.log("Você não tem gold suficiente");
           }
         } else if (selectedItem instanceof Item) {
           if (this.util.inventory.gold >= selectedItem.value) {
             this.util.inventory.gold -= selectedItem.value;
             this.util.inventory.addItem(selectedItem);
-            console.log(`Você comprou ${selectedItem.name} por ${selectedItem.value} de ouro`);
+            console.log(`Você comprou ${selectedItem.name} por ${selectedItem.value} de gold`);
+            continue;
           } else {
-            console.log("Você não tem ouro suficiente");
+            console.log("Você não tem gold suficiente");
           }
         }
         // Após a compra, você pode retornar ao menu principal ou continuar o loop, dependendo da lógica do seu jogo
@@ -82,7 +84,7 @@ export class Blacksmith extends City {
       } else if (option === "2") {
         console.log("Itens disponíveis para venda:");
         this.util.inventory.items.map((item, index) => {
-          console.log(`${index} - ${item.name} | Valor: ${item.value} de ouro`);
+          console.log(`${index} - ${item.name} | Valor: ${item.value} de gold`);
         });
         console.log("7 - Voltar");
 
@@ -96,15 +98,15 @@ export class Blacksmith extends City {
 
         selectedItem = this.util.inventory.items[+itemChoice];
 
-        if (selectedItem instanceof Weapon 
-          && this.util.inventory.hasItem(selectedItem)) {
-            this.util.inventory.gold += selectedItem.value;
+        if (selectedItem instanceof Weapon && this.util.inventory.hasItem(selectedItem)) {
+          this.util.inventory.gold += selectedItem.value;
           this.util.inventory.removeItem(selectedItem);
-          console.log(`Você vendeu ${selectedItem.name} por ${selectedItem.value} de ouro`);
+          console.log(`Você vendeu ${selectedItem.name} por ${selectedItem.value} de gold`);
+          // continue;
         } else if (selectedItem instanceof Item && this.util.inventory.hasItem(selectedItem)) {
           this.util.inventory.gold += selectedItem.value;
           this.util.inventory.removeItem(selectedItem);
-          console.log(`Você vendeu ${selectedItem.name} por ${selectedItem.value} de ouro`);
+          console.log(`Você vendeu ${selectedItem.name} por ${selectedItem.value} de gold`);
         }
 
         const option = write("Você deseja voltar ao menu principal? (S/N): ").toLowerCase();
@@ -120,19 +122,22 @@ export class Blacksmith extends City {
         // Lógica para a opção "Melhorar equipamento"
         console.log("Itens disponíveis para melhorar:");
         this.util.inventory.items.map((item, index) => {
-          console.log(`${index} - ${item.name} | Valor: ${item.value} de ouro`);
+          console.log(`${index} - ${item.name} | Valor: ${item.value} de gold`);
         });
+        console.log("Aperte Q para sair");
         // Implemente a lógica para melhorar equipamentos aqui
         const itemChoice = write("Escolha o número do item que deseja melhorar: ");
+        if (itemChoice === "q") break;
+
         const selectedItem = this.util.inventory.items[parseInt(itemChoice)];
         if (selectedItem instanceof Weapon) {
           if (this.util.inventory.gold >= selectedItem.value) {
             this.util.inventory.gold -= selectedItem.value;
             selectedItem.increaseDamage(5);
-            console.log(`Você melhorou ${selectedItem.name} por ${selectedItem.value} de ouro`);
+            console.log(`Você melhorou ${selectedItem.name} por ${selectedItem.value} de gold`);
             selectedItem.increaseValue(10);
           } else {
-            console.log("Você não tem ouro suficiente");
+            console.log("Você não tem gold suficiente");
           }
         }
       } else if (option === "4") {
