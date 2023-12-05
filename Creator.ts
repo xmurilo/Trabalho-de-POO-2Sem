@@ -108,7 +108,7 @@ export class Creator {
     if (this.regionName == "Reino de Arton") {
       if (this.race == "humano") {
         this.stats.level = 1;
-        this.stats.health = 100;
+        this.stats.health = 120;
         this.stats.max_health = 120;
         this.stats.stamina = 50;
         this.stats.max_stamina = 50;

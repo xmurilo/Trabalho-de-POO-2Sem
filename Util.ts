@@ -41,6 +41,7 @@ mobs.push(
 // Aplicando os bosses ao array bosses:
 bosses.push(new Gladimir(), new Edecio(), new Bruna(), new Murilao() ,new Angelo());
 
+
 export class Util {
   public stats: Stats;
   public inventory: Inventory;
@@ -95,7 +96,7 @@ export class Util {
   }
 
   rest(creator: Creator) {
-    if (creator.stats.health < creator.stats.max_health - creator.stats.max_health * 0.2) {
+    if (creator.stats.health < creator.stats.max_health) {
       creator.stats.health += creator.stats.max_health - creator.stats.max_health * 0.2;
       this.checkMaxHealth(creator);
     }
@@ -199,7 +200,7 @@ export class Util {
         console.log("Seja MASSACRADO HAHAHAHAHA");
         if (bosses[4].stats.health > 0) {
           if (creator.stats.level >= 5) {
-            this.combat.mobFight(creator, bosses[3]);
+            this.combat.mobFight(creator, bosses[4]);
             if (bosses[4].stats.health <= 0) {
               console.log(`Você derrotou o Boss Final ${bosses[4].name} e salvou o mundo!`);
               process.exit();

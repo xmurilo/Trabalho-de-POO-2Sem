@@ -51,7 +51,7 @@ export class Combat {
       enemy.stats.health = 0;
 
       this.generateGold();
-      creator.stats.xp += Math.floor(Util.random(1, 100) + 10);
+      creator.stats.xp += Math.floor(Util.random(1, 100) + 30);
       creator.levelUp(creator);
     } else {
       if (creator.stats.health <= 0) {
@@ -70,7 +70,7 @@ export class Combat {
       enemy.stats.health = 0;
 
       this.generateGold();
-      creator.stats.xp += 150;
+      creator.stats.xp += 300;
       creator.levelUp(creator);
       console.log("");
       console.log(`Parabéns, você derrotou o boss ${enemy.name} e ganhou 150 de xp`);
