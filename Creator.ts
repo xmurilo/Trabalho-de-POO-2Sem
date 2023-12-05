@@ -39,38 +39,73 @@ export class Creator {
 
     // ESCOLHENDO A REGIÃO
 
-    if (
-      this.region == "1" ||
-      this.region == "Arton" ||
-      this.region == " Reino de Arton" ||
-      this.region == "reino de arton"
-    ) {
-      console.log("");
-      this.race = write(
-        "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Humano ou Anão) ",
-      ).toLowerCase();
-      console.log("");
-    } else if (
-      this.region == "2" ||
-      this.region == "Floresta de Alahan" ||
-      this.region == "Alahan" ||
-      this.region == "floresta de alahan"
-    ) {
-      console.log("");
-      this.race = write(
-        "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Elfo ou Sylfo) ",
-      ).toLowerCase();
-      console.log("");
-    } else if (
-      (this.region = "3" || this.region == "Ilhas Esquecidas" || this.region == "ilhas esquecidas")
-    ) {
-      console.log("");
-      this.race = write(
-        "¤*¨¨*¤.¸¸…¸.¤ Escolha a raça que você quer ser (Tritão ou Anjo) ",
-      ).toLowerCase();
-      console.log("");
-    } else {
-      console.log("Digite a região corretamente!");
+    while (true) {
+      if (
+        this.region == "1" ||
+        this.region == "Arton" ||
+        this.region == " Reino de Arton" ||
+        this.region == "reino de arton"
+      ) {
+        console.log("");
+        console.log("Escolha sua raça:");
+        console.log("1- Humano");
+        console.log("2- Anão");
+        this.race = write("Digite o número correspondente à sua escolha: ");
+    
+        if (this.race === "1" || this.race === "humano") {
+          this.race = "humano"; // Converte para o formato padrão
+          break;
+        } else if (this.race === "2" || this.race === "anão") {
+          this.race = "anão"; // Converte para o formato padrão
+          break;
+        } else {
+          console.log("Escolha de raça inválida. Por favor, escolha entre 1 (Humano) ou 2 (Anão).");
+        }
+      } else if (
+        this.region == "2" ||
+        this.region == "Floresta de Alahan" ||
+        this.region == "Alahan" ||
+        this.region == "floresta de alahan"
+      ) {
+        console.log("");
+        console.log("Escolha sua raça:");
+        console.log("1- Elfo");
+        console.log("2- Sylfo");
+        this.race = write("Digite o número correspondente à sua escolha: ");
+    
+        if (this.race === "1" || this.race === "elfo") {
+          this.race = "elfo"; // Converte para o formato padrão
+          break;
+        } else if (this.race === "2" || this.race === "sylfo") {
+          this.race = "sylfo"; // Converte para o formato padrão
+          break;
+        } else {
+          console.log("Escolha de raça inválida. Por favor, escolha entre 1 (Elfo) ou 2 (Sylfo).");
+        }
+      } else if (
+        this.region == "3" ||
+        this.region == "Ilhas Esquecidas" ||
+        this.region == "ilhas esquecidas"
+      ) {
+        console.log("");
+        console.log("Escolha sua raça:");
+        console.log("1- Tritão");
+        console.log("2- Anjo");
+        this.race = write("Digite o número correspondente à sua escolha: ");
+    
+        if (this.race === "1" || this.race === "tritão") {
+          this.race = "tritão"; // Converte para o formato padrão
+          break;
+        } else if (this.race === "2" || this.race === "anjo") {
+          this.race = "anjo"; // Converte para o formato padrão
+          break;
+        } else {
+          console.log("Escolha de raça inválida. Por favor, escolha entre 1 (Tritão) ou 2 (Anjo).");
+        }
+      } else {
+        console.log("Digite a região corretamente!");
+        break; // Se a região estiver incorreta, sai do loop para evitar um loop infinito.
+      }
     }
 
     // ESCOLHENDO A RAÇA DE CADA REGIÃO
