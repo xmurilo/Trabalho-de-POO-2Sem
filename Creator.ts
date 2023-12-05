@@ -284,7 +284,7 @@ export class Creator {
       creator.stats.max_xp += 100;
       creator.stats.xp = 0;
 
-      console.log(`  _                   _   _   _       _ _ 
+      console.log(`    _                   _   _   _       _ _ 
                       | |    _____   _____| | | | | |_ __ | | |
                       | |   / _ \ \ / / _ \ | | | | | '_ \| | |
                       | |__|  __/\ V /  __/ | | |_| | |_) |_|_|
