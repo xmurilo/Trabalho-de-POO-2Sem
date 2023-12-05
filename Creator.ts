@@ -14,7 +14,6 @@ export class Creator {
   regionName: Region | "" = "";
   race: Race | "" = "";
   class: string = "";
-  gold: number = 0;
 
   constructor() {
     this.stats = new Stats();
