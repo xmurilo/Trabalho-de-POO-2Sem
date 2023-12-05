@@ -15,6 +15,7 @@ import {
   Goblin,
   Troll,
   Fairy,
+  Murilao
 } from "./Non_Player/Enemy";
 import { Skills } from "./Skills";
 import { Combat } from "./Combat";
@@ -38,7 +39,7 @@ mobs.push(
 );
 
 // Aplicando os bosses ao array bosses:
-bosses.push(new Gladimir(), new Edecio(), new Bruna(), new Angelo());
+bosses.push(new Gladimir(), new Edecio(), new Bruna(), new Murilao() ,new Angelo());
 
 export class Util {
   public stats: Stats;
@@ -121,7 +122,93 @@ export class Util {
     );
     console.log("");
   }
+
   travel(creator: Creator) {
+    console.log("");
+    let choice = prompt("Você deseja viajar para o Norte, Sul, Leste ou Oeste? ").toLowerCase();
+    console.log("");
+    let north: boolean = true;
+    let south: boolean = true;
+    let east: boolean = true;
+    let west: boolean = true;
+    
+    switch (choice) {
+      case "norte":
+        console.log("Você viajou para o Norte!");
+        console.log("");
+        if (bosses[0].stats.health > 0) {
+          if (creator.stats.level >= 2) {
+            this.combat.mobFight(creator, bosses[0]);
+            north = false;
+          } else {
+            console.log("Você não tem nível suficiente para lutar contra o Boss!");
+          }
+        }else{
+          console.log("Você já derrotou esse Boss!");
+        }
+        break;
+      
+      case "sul":
+        console.log("Você viajou para o Sul!");
+        console.log("");
+        if (bosses[1].stats.health > 0) {
+          if (creator.stats.level >= 2) {
+            this.combat.mobFight(creator, bosses[1]);
+            south = false;
+          } else {
+            console.log("Você não tem nível suficiente para lutar contra o Boss!");
+          }
+        }else{
+          console.log("Você já derrotou esse Boss!");
+        }
+        break;
+
+      case "leste":
+        console.log("Você viajou para o Leste!");
+        console.log("");
+        if (bosses[2].stats.health > 0) {
+          if (creator.stats.level >= 2) {
+            this.combat.mobFight(creator, bosses[2]);
+            east = false;
+          } else {
+            console.log("Você não tem nível suficiente para lutar contra o Boss!");
+          }
+        }else{
+          console.log("Você já derrotou esse Boss!");
+        }
+        break;
+
+      case "oeste":
+        console.log("Você viajou para o Oeste!");
+        console.log("");
+        if (bosses[3].stats.health > 0) {
+          if (creator.stats.level >= 2) {
+            this.combat.mobFight(creator, bosses[3]);
+            west = false;
+          } else {
+            console.log("Você não tem nível suficiente para lutar contra o Boss!");
+          }
+        }else{
+          console.log("Você já derrotou esse Boss!");
+        }
+        break;
+
+      default:
+        console.log("Você não escolheu uma direção válida!");
+        console.log("");
+        break;   
+    }
+    if (north == false && south == false && east == false && west == false && creator.stats.level >= 3) {
+      console.log("Você derrotou todos os Bosses, agora você pode enfrentar o Boss Final!");
+      console.log("");
+      console.log("Seja MASSACRADO HAHAHAHAHA");
+      this.combat.bossFight(creator, bosses[4]);
+      if (bosses[4].stats.health <= 0) {
+        console.log(`Você derrotou o Boss Final ${bosses[4].name} e salvou o mundo!`);
+        process.exit();
+      }
+    }
+
   }
 
   explore(creator: Creator) {
