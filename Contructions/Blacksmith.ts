@@ -40,7 +40,7 @@ export class Blacksmith extends City {
             selectedItem = new Weapon("Machado de Batalha", 15, 70);
             break;
           case "3":
-            selectedItem = new Item("Armadura de Cgold", 40);
+            selectedItem = new Item("Armadura de Ferro", 90);
             break;
           case "4":
             selectedItem = new HealingItem("Poção de Vida Pequena", 30, 15);
@@ -77,7 +77,14 @@ export class Blacksmith extends City {
           }
         }
         // Após a compra, você pode retornar ao menu principal ou continuar o loop, dependendo da lógica do seu jogo
-        break; // Encerrando o loop depois da compra, mas você pode continuar caso deseje
+        const option = write("Você deseja voltar ao menu principal? (S/N): ").toLowerCase();
+
+        if (option === "s" || option === "y" || option === "sim" || option === "yes") {
+          break;
+        } else if (option === "n" || option === "não" || option === "nao" || option === "no") {
+          continue;
+        }
+        
       } else if (option === "2") {
         console.log("Itens disponíveis para venda:");
         this.util.inventory.items.map((item, index) => {
