@@ -157,6 +157,7 @@ export class Combat{
                 console.log(`⎳ ⎲       Inteligência: ${creator.stats.intelligence}     `);
                 console.log(`⎳ ⎲       level: ${creator.stats.level}        `);
                 console.log(`⎳ ⎲       Gold: ${this.inventory.gold}`);
+                console.log(`⎳ ⎲  `);
                 console.log(`⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ ⎳⎲ `);
                 console.log("");
                 console.log("⫍ ——————————————————————————————————————————————————— ⥞ ⦾ ⥟ ——————————————————————————————————————————————————— ⫎");
