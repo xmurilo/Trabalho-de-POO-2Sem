@@ -7,7 +7,7 @@ export class Inventory {
 
   constructor() {
     this.items = [];
-    this.gold = 10000;
+    this.gold = 0;
   }
 
   addItem(item: Item | Weapon): void {
