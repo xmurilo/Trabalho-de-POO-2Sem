@@ -27,15 +27,5 @@ export class Quest {
   }
 }
 
-const quest = new Quest(
-  'Derrotar o dragão',
-  { type: RewardType.MONEY, value: 1000 },
-);
 
-const quest2 = new Quest(
-  'Derrotar o dragão',
-  { type: RewardType.ITEM, value: { name: 'Espada', description: 'Espada de ferro' } },
-);
 
-console.log(quest.getQuestDetails());
-console.log(quest2.getQuestDetails());
