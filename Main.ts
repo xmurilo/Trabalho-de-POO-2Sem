@@ -85,7 +85,7 @@ export function city() {
 
     switch (action) {
       case 1:
-        blacksmith.services(creator);
+        blacksmith.services();
         break;
       case 2:
         main();
