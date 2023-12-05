@@ -51,9 +51,6 @@ export class Blacksmith extends City {
             selectedItem = new Item("Poção de Mana", 30);
             break;
           case "7":
-            selectedItem = new Item("Poção de Stamina", 30);
-            break;
-          case "8":
             break;
           default:
             console.log("Opção inválida. Por favor, escolha um número válido.");
@@ -130,6 +127,7 @@ export class Blacksmith extends City {
         if (itemChoice === "q") break;
 
         const selectedItem = this.util.inventory.items[parseInt(itemChoice)];
+
         if (selectedItem instanceof Weapon) {
           if (this.util.inventory.gold >= selectedItem.value) {
             this.util.inventory.gold -= selectedItem.value;
