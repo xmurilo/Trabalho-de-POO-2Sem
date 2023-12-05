@@ -222,7 +222,6 @@ export class Util {
   giveUp() {
     const phases = [
       "Lembre-se que você é um guerreiro e não um covarde!",
-      "Você não pode desistir agora!",
       "Se precisa de ajuda, procure um amigo!",
       "Lembre-se, até os heróis tiram um cochilo antes de voltar à batalha!",
     ];
