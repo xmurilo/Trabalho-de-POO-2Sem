@@ -19,7 +19,7 @@ export class BerserkImpact extends Skills {
   public atack(creator: Creator, enemy: Enemy): void {
     let util = new Util(creator);
 
-    if (creator.stats.mana >= 30 && creator.stats.stamina >= 40) {
+    if (creator.stats.mana >= 10 && creator.stats.stamina >= 10) {
       let damage = 30 + creator.stats.strength - enemy.stats.armor;
       if (enemy.stats.health > 0) {
         enemy.stats.health -= damage;
@@ -47,7 +47,7 @@ export class DesintegratorBolt extends Skills {
   }
 
   public atack(creator: Creator, enemy: Enemy): void {
-    if (creator.stats.mana >= 40 && creator.stats.stamina >= 20) {
+    if (creator.stats.mana >= 10 && creator.stats.stamina >= 10) {
       let damage = 40 + creator.stats.intelligence - enemy.stats.armor;
       if (enemy.stats.health > 0) {
         enemy.stats.health -= damage;
@@ -72,7 +72,7 @@ export class IlusionDart extends Skills {
   }
 
   public atack(creator: Creator, enemy: Enemy): void {
-    if (creator.stats.mana >= 20 && creator.stats.stamina >= 40) {
+    if (creator.stats.mana >= 10 && creator.stats.stamina >= 10) {
       let damage = 25 + creator.stats.dexterity - enemy.stats.armor;
       if (enemy.stats.health > 0) {
         enemy.stats.health -= damage;
@@ -99,7 +99,7 @@ export class DeathVision extends Skills {
 
   public atack(creator: Creator, enemy: Enemy): void {
     const util = new Util(creator);
-    if (creator.stats.mana >= 20 && creator.stats.stamina >= 50) {
+    if (creator.stats.mana >= 10 && creator.stats.stamina >= 10) {
       let damage = 40 + creator.stats.dexterity - enemy.stats.armor;
       if (enemy.stats.health > 0) {
         enemy.stats.health -= damage;
