@@ -4,7 +4,7 @@ import { Skills, BerserkImpact, DesintegratorBolt, DeathVision, IlusionDart } fr
 const prompt = require("prompt-sync")();
 const write = prompt;
 
-type Race = "humano" | "anão" | "elfo" | "sylfo" | "tritão" | "anjo";
+type Race = "humano" | "anão" | "elfo" | "sylfo" | "tritao" | "anjo";
 type Region = "Reino de Arton" | "Floresta de Alahan" | "Ilhas Esquecidas";
 export class Creator {
   public stats: Stats;
@@ -14,7 +14,7 @@ export class Creator {
   regionName: Region | "" = "";
   race: Race | "" = "";
   class: string = "";
-  gold: number = 0;
+
 
   constructor() {
     this.stats = new Stats();
@@ -71,7 +71,7 @@ export class Creator {
         race != "anão" &&
         race != "elfo" &&
         race != "sylfo" &&
-        race != "tritão" &&
+        race != "tritao" &&
         race != "anjo"
       ) {
         console.log("Raça inexistente, favor digitar corretamente!");
@@ -178,7 +178,7 @@ export class Creator {
 
     // ILHAS ESQUECIDAS
     if (this.regionName == "Ilhas Esquecidas") {
-      if (this.race == "tritão") {
+      if (this.race == "tritao") {
         this.stats.level = 1;
         this.stats.health = 120;
         this.stats.max_health = 120;
