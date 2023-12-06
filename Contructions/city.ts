@@ -1,18 +1,14 @@
 const prompt = require('prompt-sync')();
 const write = prompt;
-import { Creator } from '../Creator';
-import { Util } from '../Util';
+import { Inventory } from '../Inventory/Inventory';
 
 
 
 export abstract class City {
-  public creator: Creator;
-  public util: Util;
-
-  constructor(creator:Creator) {
-    this.creator = new Creator();
-    this.util = new Util(creator);
+  public inventory: Inventory;
+  constructor() {
+    this.inventory = new Inventory();
   }
 
-  public abstract services(creator: Creator): void;
+  public abstract services(inventory: Inventory): void;
 }
