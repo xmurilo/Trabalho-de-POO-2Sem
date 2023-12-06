@@ -29,7 +29,7 @@ export class Inventory {
   showInventory(): void {
     console.log("====Inventário====");
     this.items.forEach(item => {
-      console.log(`==>${item.name} - Valor: ${item.value}==`);
+      console.log(`==>${item.name} - Valor: ${item.value}`);
     });
     console.log("==================");
     console.log("====Gold====");
@@ -40,21 +40,5 @@ export class Inventory {
   sellItem(item: Item | Weapon): void {
     this.removeItem(item);
     this.gold += item.value;
-  }
-
-  checkItem(item: Item | Weapon): boolean {
-    return this.items.includes(item);
-  }
-
-  checkGold(item: Item | Weapon): boolean {
-    return this.gold >= item.value;
-  }
-
-  checkInventory(item: Item | Weapon): boolean {
-    return this.checkItem(item) && this.checkGold(item);
-  }
-
-  checkInventoryItem(item: Item | Weapon): boolean {
-    return this.checkItem(item);
   }
 }
