@@ -1,4 +1,3 @@
-import { Stats } from "./Stats";
 import { Creator } from "./Creator";
 import { Enemy } from "./Non_Player/Enemy";
 import { Util } from "./Util";
