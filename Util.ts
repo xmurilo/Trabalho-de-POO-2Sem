@@ -15,13 +15,11 @@ import {
   Goblin,
   Troll,
   Fairy,
-  Murilao
+  Murilao,
 } from "./Non_Player/Enemy";
-import { Skills } from "./Skills";
 import { Combat } from "./Combat";
 
 const prompt = require("prompt-sync")();
-const write = prompt;
 
 let mobs: Enemy[] = [];
 let bosses: Enemy[] = [];
@@ -39,19 +37,18 @@ mobs.push(
 );
 
 // Aplicando os bosses ao array bosses:
-bosses.push(new Gladimir(), new Edecio(), new Bruna(), new Murilao() ,new Angelo());
-
+bosses.push(new Gladimir(), new Edecio(), new Bruna(), new Murilao(), new Angelo());
 
 export class Util {
   public stats: Stats;
   public inventory: Inventory;
   public combat: Combat;
   public creator: Creator;
-  constructor(creator: Creator) {
+  constructor(creator: Creator, inventory?: Inventory) {
     this.stats = new Stats();
     this.creator = new Creator();
-    this.inventory = new Inventory();
-    this.combat = new Combat(creator);
+    this.inventory = inventory || new Inventory();
+    this.combat = new Combat(creator, this.inventory);
   }
 
   checkMaxHealth(creator: Creator): number {
@@ -82,7 +79,7 @@ export class Util {
   }
   showStats(creator: Creator): void {
     return console.log(
-     `====Status====
+      `====Status====
       Vida: ${creator.stats.health}/${creator.stats.max_health}
       Força: ${creator.stats.strength}
       Stamina: ${creator.stats.stamina}/${creator.stats.max_stamina}
@@ -91,7 +88,7 @@ export class Util {
       Destreza: ${creator.stats.dexterity}
       Armadura: ${creator.stats.armor}
       Nivel: ${creator.stats.level}
-      Xp: ${creator.stats.xp}/${creator.stats.max_xp}` 
+      Xp: ${creator.stats.xp}/${creator.stats.max_xp}`,
     );
   }
 
@@ -124,42 +121,44 @@ export class Util {
     console.log("");
   }
 
-  travel(creator: Creator) {
+  travel(creator: Creator, inventory: Inventory) {
     console.log("");
-    let choice = prompt("Você deseja viajar para o Norte, Sul, Leste, Oeste ou Centro? ").toLowerCase();
+    let choice = prompt(
+      "Você deseja viajar para o Norte, Sul, Leste, Oeste ou Centro? ",
+    ).toLowerCase();
     console.log("");
     let north: boolean = true;
     let south: boolean = true;
     let east: boolean = true;
     let west: boolean = true;
-    
+
     switch (choice) {
       case "norte":
         console.log("Você viajou para o Norte!");
         console.log("");
         if (bosses[0].stats.health > 0) {
           if (creator.stats.level >= 2) {
-            this.combat.mobFight(creator, bosses[0]);
+            this.combat.mobFight(creator, bosses[0], inventory);
             north = false;
           } else {
             console.log("Você não tem nível suficiente para lutar contra o Boss!");
           }
-        }else{
+        } else {
           console.log("Você já derrotou esse Boss!");
         }
         break;
-      
+
       case "sul":
         console.log("Você viajou para o Sul!");
         console.log("");
         if (bosses[1].stats.health > 0) {
           if (creator.stats.level >= 2) {
-            this.combat.mobFight(creator, bosses[1]);
+            this.combat.mobFight(creator, bosses[1], inventory);
             south = false;
           } else {
             console.log("Você não tem nível suficiente para lutar contra o Boss!");
           }
-        }else{
+        } else {
           console.log("Você já derrotou esse Boss!");
         }
         break;
@@ -169,12 +168,12 @@ export class Util {
         console.log("");
         if (bosses[2].stats.health > 0) {
           if (creator.stats.level >= 2) {
-            this.combat.mobFight(creator, bosses[2]);
+            this.combat.mobFight(creator, bosses[2], inventory);
             east = false;
           } else {
             console.log("Você não tem nível suficiente para lutar contra o Boss!");
           }
-        }else{
+        } else {
           console.log("Você já derrotou esse Boss!");
         }
         break;
@@ -184,23 +183,23 @@ export class Util {
         console.log("");
         if (bosses[3].stats.health > 0) {
           if (creator.stats.level >= 2) {
-            this.combat.mobFight(creator, bosses[3]);
+            this.combat.mobFight(creator, bosses[3], inventory);
             west = false;
           } else {
             console.log("Você não tem nível suficiente para lutar contra o Boss!");
           }
-        }else{
+        } else {
           console.log("Você já derrotou esse Boss!");
         }
         break;
-      
+
       case "centro":
         console.log("Você derrotou todos os Bosses, agora você pode enfrentar o Boss Final!");
         console.log("");
         console.log("Seja MASSACRADO HAHAHAHAHA");
         if (bosses[4].stats.health > 0) {
           if (creator.stats.level >= 5) {
-            this.combat.mobFight(creator, bosses[4]);
+            this.combat.mobFight(creator, bosses[4], inventory);
             if (bosses[4].stats.health <= 0) {
               console.log(`Você derrotou o Boss Final ${bosses[4].name} e salvou o mundo!`);
               process.exit();
@@ -208,7 +207,7 @@ export class Util {
           } else {
             console.log("Você não tem nível suficiente para lutar contra o Boss!");
           }
-        }else{
+        } else {
           console.log("Você já derrotou esse Boss!");
         }
         break;
@@ -216,16 +215,16 @@ export class Util {
       default:
         console.log("Você não escolheu uma direção válida!");
         console.log("");
-        break;   
-      }
+        break;
+    }
   }
 
-  explore(creator: Creator) {
+  explore(creator: Creator, inventory: Inventory) {
     let randomEnemy = Util.random(0, mobs.length - 1);
     if (mobs[randomEnemy].stats.health <= 0) {
       mobs[randomEnemy].stats.health = mobs[randomEnemy].stats.max_health;
     }
-    this.combat.mobFight(creator, mobs[randomEnemy]);
+    this.combat.mobFight(creator, mobs[randomEnemy], inventory);
   }
 
   giveUp() {
