@@ -3,16 +3,15 @@ const write = prompt;
 import { Creator } from "./Creator";
 import { Util } from "./Util";
 import { Blacksmith } from "./Contructions/Blacksmith";
-import { Enemy } from "./Non_Player/Enemy";
 import { Inventory } from "./Inventory/Inventory";
 import { Quest, RewardType } from "./Quests/Quest";
 import { NPC } from "./Non_Player/npc";
 
 
 const creator: Creator = new Creator();
-const util: Util = new Util(creator);
-const blacksmith: Blacksmith = new Blacksmith(creator);
 const inventory: Inventory = new Inventory();
+const util: Util = new Util(creator, inventory);
+const blacksmith: Blacksmith = new Blacksmith();
 creator.characterCreator();
 main();
 
@@ -50,14 +49,14 @@ export function main() {
         util.rest(creator);
         break;
       case 3:
-        util.travel(creator);
+        util.travel(creator, inventory);
         
         break;
       case 4:
         inventory.showInventory();
         break;
       case 5:
-        util.explore(creator);
+        util.explore(creator, inventory);
         break;
       case 6:
         city();
@@ -89,7 +88,7 @@ export function city() {
 
     switch (action) {
       case 1:
-        blacksmith.services();
+        blacksmith.services(inventory);
         break;
       case 2:
         azarovNpc();
