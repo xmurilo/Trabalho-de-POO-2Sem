@@ -19,14 +19,14 @@ export class Combat {
   public ilusionDart: IlusionDart;
   public deathVision: DeathVision;
   public inventory: Inventory;
-  constructor(creator: Creator) {
+  constructor(creator: Creator, inventory: Inventory) {
     this.creator = new Creator();
     this.skill = new Skills(creator);
     this.berserkImpact = new BerserkImpact(creator);
     this.desintegratorBolt = new DesintegratorBolt(creator);
     this.ilusionDart = new IlusionDart(creator);
     this.deathVision = new DeathVision(creator);
-    this.inventory = new Inventory();
+    this.inventory = inventory;
   }
 
   public atack(creator: Creator, enemy: Enemy): void {
@@ -50,7 +50,7 @@ export class Combat {
     if (enemy.stats.health <= 0) {
       enemy.stats.health = 0;
 
-      this.generateGold();
+      this.generateGold(this.inventory);
       creator.stats.xp += Math.floor(Util.random(1, 100) + 30);
       creator.levelUp(creator);
     } else {
@@ -69,7 +69,7 @@ export class Combat {
     if (enemy.stats.health <= 0) {
       enemy.stats.health = 0;
 
-      this.generateGold();
+      this.generateGold(this.inventory);
       creator.stats.xp += 300;
       creator.levelUp(creator);
       console.log("");
@@ -99,7 +99,7 @@ export class Combat {
     }
   }
 
-  public mobFight(creator: Creator, enemy: Enemy): void {
+  public mobFight(creator: Creator, enemy: Enemy, inventory: Inventory): void {
     console.log("");
     console.log(`Você encontrou um ${enemy.name}!`);
     console.log("");
@@ -139,7 +139,7 @@ export class Combat {
         break;
       }
       if (choice == "4") {
-        this.inventory.showInventory();
+        inventory.showInventory();
         this.death(creator, enemy);
       }
       console.log(
@@ -268,12 +268,12 @@ export class Combat {
     }
   }
 
-  generateGold() {
+  generateGold(inventory: Inventory) {
     let gold = Math.floor(Util.random(1, 100) + 70);
-    this.inventory.increaseGold(gold);
+    inventory.increaseGold(gold);
     console.log("");
     console.log(`Você ganhou ${gold} de gold!`);
     console.log("");
-    console.log(`Gold atual: ${this.inventory.gold}`);
+    console.log(`Gold atual: ${inventory.gold}`);
   }
 }
