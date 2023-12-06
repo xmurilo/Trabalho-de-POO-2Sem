@@ -59,8 +59,8 @@ export class Util {
   }
 
   checkMaxMana(creator: Creator): number {
-    if (creator.stats.mana > creator.stats.mana) {
-      creator.stats.mana = creator.stats.mana;
+    if (creator.stats.mana > creator.stats.max_mana) {
+      creator.stats.mana = creator.stats.max_mana;
     }
     return creator.stats.mana;
   }
@@ -93,6 +93,7 @@ export class Util {
   }
 
   rest(creator: Creator) {
+    
     if (creator.stats.health < creator.stats.max_health) {
       creator.stats.health += creator.stats.max_health - creator.stats.max_health * 0.2;
       this.checkMaxHealth(creator);
@@ -101,7 +102,7 @@ export class Util {
       creator.stats.mana += creator.stats.max_mana - creator.stats.max_mana * 0.2;
       this.checkMaxMana(creator);
     }
-    if (creator.stats.stamina < creator.stats.max_stamina - creator.stats.max_stamina * 0.2) {
+    if (creator.stats.stamina < creator.stats.max_stamina ) {
       creator.stats.stamina += creator.stats.max_stamina - creator.stats.max_stamina * 0.2;
       this.checkMaxStamina(creator);
     }
@@ -124,7 +125,7 @@ export class Util {
   travel(creator: Creator, inventory: Inventory) {
     console.log("");
     let choice = prompt(
-      "Você deseja viajar para o Norte, Sul, Leste, Oeste ou Centro? ",
+      "Você deseja viajar para a Cripta dos Antigos Reis (cripta), Abismo da Perdição (abismo), Torre da Magia Esquecida (torre), Labirinto dos Espíritos Perdidos (labirinto) ou SENAC? ",
     ).toLowerCase();
     console.log("");
     let north: boolean = true;
@@ -133,8 +134,8 @@ export class Util {
     let west: boolean = true;
 
     switch (choice) {
-      case "norte":
-        console.log("Você viajou para o Norte!");
+      case "cripta":
+        console.log("Você viajou para a Cripta dos Antigos Reis!");
         console.log("");
         if (bosses[0].stats.health > 0) {
           if (creator.stats.level >= 2) {
@@ -148,8 +149,8 @@ export class Util {
         }
         break;
 
-      case "sul":
-        console.log("Você viajou para o Sul!");
+      case "abismo":
+        console.log("Você viajou para o Abismo da Perdição!");
         console.log("");
         if (bosses[1].stats.health > 0) {
           if (creator.stats.level >= 2) {
@@ -163,8 +164,8 @@ export class Util {
         }
         break;
 
-      case "leste":
-        console.log("Você viajou para o Leste!");
+      case "torre":
+        console.log("Você viajou para a Torre da Magia Esquecida!");
         console.log("");
         if (bosses[2].stats.health > 0) {
           if (creator.stats.level >= 2) {
@@ -178,8 +179,8 @@ export class Util {
         }
         break;
 
-      case "oeste":
-        console.log("Você viajou para o Oeste!");
+      case "labirinto":
+        console.log("Você viajou para o Labirinto dos Espíritos Perdidos!");
         console.log("");
         if (bosses[3].stats.health > 0) {
           if (creator.stats.level >= 2) {
@@ -193,12 +194,13 @@ export class Util {
         }
         break;
 
-      case "centro":
-        console.log("Você derrotou todos os Bosses, agora você pode enfrentar o Boss Final!");
-        console.log("");
-        console.log("Seja MASSACRADO HAHAHAHAHA");
+      case "senac":
+        
         if (bosses[4].stats.health > 0) {
-          if (creator.stats.level >= 5) {
+          if (creator.stats.level >= 3) {
+            console.log("Você derrotou todos os Bosses, agora você pode enfrentar o Boss Final!");
+            console.log("");
+            console.log("Seja MASSACRADO HAHAHAHAHA");
             this.combat.mobFight(creator, bosses[4], inventory);
             if (bosses[4].stats.health <= 0) {
               console.log(`Você derrotou o Boss Final ${bosses[4].name} e salvou o mundo!`);
